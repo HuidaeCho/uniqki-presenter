@@ -1,0 +1,39 @@
+#presenter-selector {
+	font-size:		10pt;
+	position:		absolute;
+	right:			0px;
+	pointer-events:		auto;
+	z-index:		9999;
+}
+#title {
+	text-align:		center;
+}
+#title h1 {
+	font-size:		200%;
+}
+.impress-enabled .step {
+	padding:		0px 20px 0px 20px;
+	overflow-x:		hidden !important;
+	overflow-y:		auto !important;
+}
+h2 {
+	margin:			10px 10px 10px 10px;
+	font-size:		200%;
+	line-height:		1.1;
+	text-align:		center;
+}
+h3 {
+	margin:			10px 10px 10px 10px;
+	font-size:		150%;
+	line-height:		1.1;
+	text-align:		center;
+}
+ol, ul {
+	list-style:		initial;
+	margin-left:		30px;
+}
+pre, code {
+	font-family:		monospace;
+	font-size:		80%;
+	line-height:		1.5;
+}

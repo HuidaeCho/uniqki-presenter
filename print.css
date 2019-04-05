@@ -1,0 +1,25 @@
+#top {
+	display:		none;
+}
+#presenter-selector {
+	display:		none;
+}
+.tags {
+	display:		none;
+}
+#menu {
+	display:		none;
+}
+#metadata {
+	padding-top:		2em;
+	font-size:		smaller;
+}
+#parsing-time {
+	display:		none;
+}
+#bottom {
+	display:		none;
+}
+.edit-section a {
+	display:		none;
+}

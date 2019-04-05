@@ -1,0 +1,44 @@
+#top {
+	display:		none;
+}
+.tags {
+	display:		none;
+}
+#title h1 {
+	text-shadow:		5px 5px 10px black;
+}
+#title {
+	text-shadow:		5px 5px 10px black;
+}
+#title .course {
+	font-size:		50%;
+	margin-bottom:		1em;
+}
+#title .affiliation {
+	font-size:		50%;
+}
+.section-number {
+	display:		none;
+}
+.edit-section a {
+	display:		none;
+}
+#toc {
+	display:		none;
+}
+#menu {
+	display:		none;
+}
+#metadata {
+	display:		none;
+}
+#bottom {
+	display:		none;
+}
+/*
+.scrollable {
+	overflow-x:		hidden !important;
+	overflow-y:		auto !important;
+	height:			600px;
+}
+*/
