@@ -172,7 +172,7 @@ window_onload(function(){
 	[...document.getElementsByClassName('language-pseudocode')].forEach(function(node){
 		let code = node.textContent;
 		let template = document.createElement('template');
-		template.innerHTML = pseudocode.renderToString(code, {});
+		template.innerHTML = pseudocode.renderToString(code, {lineNumber: true});
 		node.parentNode.parentNode.insertBefore(template.content, node.parentNode);
 		node.parentNode.parentNode.removeChild(node.parentNode);
 	});
