@@ -27,12 +27,18 @@ if(!get_option('asis')){
 
 	let sections = [...document.getElementsByTagName('section')];
 	let num_grids = Math.ceil(Math.sqrt(sections.length));
-	let grid_width = 1024;
-	let grid_height = 768;
+	let grid_width = 1280*3;
+	let grid_height = 1024*3;
 	let xs = [], ys = [];
+
+	let has_slide = get_option('slide');
+	if(!has_slide || !get_option('z'))
+	    z_freq = 0;
+	console.log(z_freq);
+
 	sections.forEach(function(section){
 		section.classList.add('step');
-		if(section.id != 'title')
+		if(has_slide && section.id != 'title')
 			section.classList.add('slide');
 
 		let x, y;

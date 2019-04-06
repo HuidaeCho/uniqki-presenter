@@ -16,22 +16,23 @@
 	margin-bottom:		0.5em;
 }
 .slide {
-	width:			1024px;
-	height:			768px;
+	width:			1280px;
+	height:			1024px;
 	font-family:		'PT Serif', georgia, serif;
 	color:			black;
 }
 .impress-enabled .step {
+	width:			1280px;
 	padding:		0px 20px 0px 20px;
 	overflow-x:		hidden !important;
 	overflow-y:		auto !important;
 }
 #impress .step .substep {
-	opacity: 0;
+	opacity:		0;
 }
 #impress .step .substep.substep-visible {
-	opacity: 1;
-	transition: opacity 1s;
+	opacity:		1;
+	transition:		opacity 1s;
 }
 h2 {
 	margin-top:		0.25em;
