@@ -114,6 +114,7 @@ load_css('u.tpl/reveal/css/reveal.css', 'screen');
 load_css('u.tpl/reveal/css/theme/' + theme + '.css', 'screen');
 load_highlight();
 load_mathjax_config();
+load_pseudocode();
 load_common_presentation_css();
 load_css('u.tpl/reveal.css', 'screen');
 

@@ -109,11 +109,6 @@ function load_common_presentation_css(){
 	load_css('u.tpl/print.css', 'print');
 }
 
-function load_highlight_css(){
-	//load_css('u.tpl/highlight.js/styles/atom-one-light.css');
-	load_css('u.tpl/hljs.css');
-}
-
 function load_js(js, async, callback){
 	let script = document.createElement('script');
 	script.src = js;
@@ -123,6 +118,12 @@ function load_js(js, async, callback){
 		script.onload = callback;
 	my_head.appendChild(script);
 }
+
+function load_highlight_css(){
+	//load_css('u.tpl/highlight.js/styles/atom-one-light.css');
+	load_css('u.tpl/hljs.css');
+}
+
 
 function load_highlight_js(){
 	load_js('u.tpl/highlight/highlight.pack.js', false, function(){
@@ -152,7 +153,29 @@ function load_mathjax(){
 	load_mathjax_js();
 }
 
+function load_pseudocode_css(){
+	load_css('u.tpl/katex/katex.min.css');
+	load_css('u.tpl/pseudocode/pseudocode.min.css');
+}
+
+function load_pseudocode_js(){
+	load_js('u.tpl/katex/katex.min.js');
+	load_js('u.tpl/pseudocode/pseudocode.min.js');
+}
+
+function load_pseudocode(){
+	load_pseudocode_js();
+	load_pseudocode_css();
+}
+
 window_onload(function(){
+	[...document.getElementsByClassName('language-pseudocode')].forEach(function(node){
+		let code = node.textContent;
+		let template = document.createElement('template');
+		template.innerHTML = pseudocode.renderToString(code, {});
+		node.parentNode.parentNode.insertBefore(template.content, node.parentNode);
+		node.parentNode.parentNode.removeChild(node.parentNode);
+	});
 	[...document.getElementsByTagName('code')].forEach(function(code){
 		if(code.classList.length == 0)
 			code.classList.add('language-plaintext');

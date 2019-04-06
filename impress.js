@@ -98,6 +98,7 @@ if(!get_option('asis')){
 load_css('u.tpl/impress/css/impress-demo.css', 'screen');
 load_highlight();
 load_mathjax();
+load_pseudocode();
 load_common_presentation_css();
 load_css('u.tpl/impress.css', 'screen');
 
