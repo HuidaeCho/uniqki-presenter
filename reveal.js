@@ -147,6 +147,7 @@ else if(title_background){
 window_onload(function(){
 	load_js('u.tpl/reveal/lib/js/head.min.js', false, function(){
 		load_js('u.tpl/reveal/js/reveal.js', false, function(){
+			let mathjax_config = window.location.href.match(/^file:/) ? 'TeX-AMS_SVG-full' : 'TeX-AMS_HTML-full';
 			Reveal.initialize({
 				width: "100%",
 				height: "100%",
@@ -154,9 +155,8 @@ window_onload(function(){
 				mouseWheel: true,
 				transition: transition,
 				math: {
-	//				mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js',
 					mathjax: 'u.tpl/MathJax/MathJax.js',
-					config: 'TeX-AMS_HTML-full'
+					config: mathjax_config
 				},
 				dependencies: [
 					{ src: 'u.tpl/reveal/plugin/markdown/marked.js' },

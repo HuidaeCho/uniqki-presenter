@@ -144,7 +144,6 @@ function load_mathjax_config(){
 }
 
 function load_mathjax_js(){
-//	load_js('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML', true);
 	load_js('u.tpl/MathJax/MathJax.js?config=TeX-AMS_CHTML', true);
 }
 
