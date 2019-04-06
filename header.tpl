@@ -9,8 +9,9 @@
 <script src="u.tpl/u.js"></script>
 <script>
 window_onload(function(){
-	ajax_request('[[CGI]]/[[PAGE]]?user_info', null, process_menu,
-		'text/plain');
+	if(!window.location.href.match(/^file:/))
+		ajax_request('[[CGI]]/[[PAGE]]?user_info', null, process_menu,
+			'text/plain');
 });
 </script>
 </head>

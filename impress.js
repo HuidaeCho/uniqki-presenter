@@ -34,7 +34,6 @@ if(!get_option('asis')){
 	let has_slide = get_option('slide');
 	if(!has_slide || !get_option('z'))
 	    z_freq = 0;
-	console.log(z_freq);
 
 	sections.forEach(function(section){
 		section.classList.add('step');
