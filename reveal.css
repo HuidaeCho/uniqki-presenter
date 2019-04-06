@@ -19,7 +19,7 @@
 .reveal .slides {
 	font-size:		3.3vh;
 }
-.reveal .slides section p {
+.reveal .slides section p, .reveal .slides section ul, .reveal .slides section ol, .reveal .slides section dl {
 	margin-bottom:		1em;
 }
 .reveal .slides section img {
