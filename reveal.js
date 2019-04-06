@@ -38,37 +38,39 @@ if(dark_themes.includes(theme))
 		}
 	});
 
-if(!get_option('asis') && get_option('flat'))
-	flatten_view();
-else{
-	[...document.getElementsByTagName('section')].forEach(function(section){
-		let first_section;
-		if([...section.childNodes].some(function(node){
-			if(node.nodeName.toLowerCase() == 'section'){
-				first_section = node;
-				return true;
-			}
-		})){
-			let sec = document.createElement('section');
-			sec.id = section.id;
-			section.removeAttribute('id');
-			section.insertBefore(sec, first_section);
-			let last_node = null;
-			[...section.childNodes].reverse().forEach(function(node){
-				if(node.nodeName.toLowerCase() != 'section'){
-					sec.insertBefore(node, last_node);
-					last_node = node;
+if(!get_option('asis')){
+	if(get_option('flat'))
+		flatten_view();
+	else
+		[...document.getElementsByTagName('section')].forEach(function(section){
+			let first_section;
+			if([...section.childNodes].some(function(node){
+				if(node.nodeName.toLowerCase() == 'section'){
+					first_section = node;
+					return true;
 				}
-			});
-		}
-	});
+			})){
+				let sec = document.createElement('section');
+				sec.id = section.id;
+				section.removeAttribute('id');
+				section.insertBefore(sec, first_section);
+				let last_node = null;
+				[...section.childNodes].reverse().forEach(function(node){
+					if(node.nodeName.toLowerCase() != 'section'){
+						sec.insertBefore(node, last_node);
+						last_node = node;
+					}
+				});
+			}
+		});
+/*
 	[...document.getElementsByTagName('section')].forEach(function(section){
 		let separate_paragraphs = function(parentNode){
 			[...parentNode.childNodes].reverse().forEach(function(node){
 				let curr_tag = node.nodeName.toLowerCase();
 				let prev_tag = node.previousElementSibling && node.previousElementSibling.nodeName.toLowerCase();
 				if((curr_tag == 'p' ||
-				    curr_tag == 'div') &&
+				    (node.classList && node.classList.contains('fragment'))) &&
 				   (prev_tag == 'p' ||
 				    prev_tag == 'ul' ||
 				    prev_tag == 'ol' ||
@@ -84,6 +86,7 @@ else{
 		}
 		separate_paragraphs(section);
 	});
+*/
 }
 
 /*

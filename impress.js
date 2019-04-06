@@ -27,8 +27,8 @@ if(!get_option('asis')){
 
 	let sections = [...document.getElementsByTagName('section')];
 	let num_grids = Math.ceil(Math.sqrt(sections.length));
-	let grid_width = 900;
-	let grid_height = 700;
+	let grid_width = 1024;
+	let grid_height = 768;
 	let xs = [], ys = [];
 	sections.forEach(function(section){
 		section.classList.add('step');

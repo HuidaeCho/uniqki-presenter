@@ -20,8 +20,14 @@
 	font-size:		3.3vh;
 }
 .reveal .slides section p {
-	margin:			0;
+	margin-bottom:		0.5em;
 }
 .reveal .slides section img {
 	border:			0;
+}
+.reveal .slides section h1 {
+	margin-bottom:		0.5em;
+}
+.reveal .slides section .author {
+	margin-bottom:		0.5em;
 }
