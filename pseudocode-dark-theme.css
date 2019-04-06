@@ -1,0 +1,8 @@
+.ps-root .ps-algorithm {
+    /* algorithm environment has borders; algorithmic has not */
+    border-top: 3px solid white;
+    border-bottom: 2px solid white;
+}
+.ps-root .ps-algorithm.with-caption > .ps-line:first-child {
+    border-bottom: 2px solid white;
+}

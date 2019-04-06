@@ -31,12 +31,6 @@ let transition = transitions[Math.floor(Math.random()*transitions.length)];
 
 document.getElementById('main').classList.add('reveal');
 document.getElementById('view').classList.add('slides');
-if(dark_themes.includes(theme))
-	[...document.getElementsByTagName('img')].forEach(function(img){
-		if(img.src.match(/\.svg$/)){
-			img.style.background = 'white';
-		}
-	});
 
 if(!get_option('asis')){
 	if(get_option('flat'))
@@ -117,6 +111,15 @@ load_mathjax_config();
 load_pseudocode();
 load_common_presentation_css();
 load_css('u.tpl/reveal.css', 'screen');
+
+if(dark_themes.includes(theme)){
+	[...document.getElementsByTagName('img')].forEach(function(img){
+		if(img.src.match(/\.svg$/)){
+			img.style.background = 'white';
+		}
+	});
+	load_css('u.tpl/pseudocode-dark-theme.css');
+}
 
 let sections = [...document.getElementsByTagName('section')]
 let background = get_option('background');
