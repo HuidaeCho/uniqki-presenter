@@ -19,12 +19,8 @@
 .reveal .slides {
 	font-size:		3.3vh;
 }
-.reveal .slides section p {
-	margin-bottom:		1em;
-}
-.reveal .slides section ul, .reveal .slides section ol, .reveal .slides section dl {
-	margin-top:		-1em;
-	margin-bottom:		0.5em;
+.reveal .slides section p + p {
+	margin-top:		5em;
 }
 .reveal .slides section img {
 	border:			0;
