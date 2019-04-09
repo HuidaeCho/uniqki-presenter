@@ -36,3 +36,6 @@
 	text-align:		left;
 	margin-bottom:		0;
 }
+.reveal .slides section .MathJax_Display {
+	margin-top:		0.5em;
+}
