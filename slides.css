@@ -11,11 +11,11 @@
 	text-shadow:		5px 5px 10px black;
 }
 #title .course {
-	font-size:		50%;
+	font-size:		smaller;
 	margin-bottom:		1em;
 }
 #title .affiliation {
-	font-size:		50%;
+	font-size:		smaller;
 }
 .section-number {
 	display:		none;
