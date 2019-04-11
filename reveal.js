@@ -150,8 +150,8 @@ window_onload(function(){
 		load_js('u.tpl/reveal/js/reveal.js', false, function(){
 			let mathjax_config = window.location.href.match(/^file:/) ? 'TeX-AMS_SVG-full' : 'TeX-AMS_HTML-full';
 			Reveal.initialize({
-				width: "100%",
-				height: "100%",
+				width: '100%',
+				height: '100%',
 				history: true,
 				mouseWheel: true,
 				transition: transition,

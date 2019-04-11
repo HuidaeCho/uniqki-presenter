@@ -139,7 +139,7 @@ function load_highlight(){
 function load_mathjax_config(){
 	let script = document.createElement('script');
 	script.type = 'text/x-mathjax-config';
-	script.innerHTML = "MathJax.Hub.Config({TeX: {equationNumbers: {autoNumber: 'AMS'}}, tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']], processEscapes: true}});";
+	script.innerHTML = "MathJax.Hub.Config({'HTML-CSS': {scale: 85}, TeX: {equationNumbers: {autoNumber: 'AMS'}}, tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']], processEscapes: true}});";
 	my_head.appendChild(script);
 }
 
