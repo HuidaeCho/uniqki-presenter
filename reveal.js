@@ -26,7 +26,7 @@ const transitions = [
 	'concave',
 	'zoom'
 ];
-let theme = themes[Math.floor(Math.random()*themes.length)];
+let theme = get_option('theme') || themes[Math.floor(Math.random()*themes.length)];
 let transition = transitions[Math.floor(Math.random()*transitions.length)];
 
 document.getElementById('main').classList.add('reveal');
