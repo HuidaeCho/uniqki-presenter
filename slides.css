@@ -12,10 +12,15 @@
 }
 #title .course {
 	font-size:		smaller;
-	margin-bottom:		1em;
+}
+#title .course + .author {
+	margin-top:		1em;
 }
 #title .affiliation {
 	font-size:		smaller;
+}
+#title .author + .affiliation {
+	margin-top:		0.5em;
 }
 .section-number {
 	display:		none;
