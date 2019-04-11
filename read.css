@@ -4,8 +4,13 @@
 }
 .course {
 	font-size:		smaller;
-	margin-bottom:		1em;
+}
+.course + .author {
+	margin-top:		1em;
 }
 .affiliation {
 	font-size:		smaller;
+}
+.author + .affiliation {
+	margin-top:		0.5em;
 }
