@@ -22,6 +22,9 @@
 #title .author + .affiliation {
 	margin-top:		0.5em;
 }
+.read {
+	display:		none;
+}
 .section-number {
 	display:		none;
 }

@@ -116,7 +116,7 @@ if(dark_themes.includes(theme)){
 	[...document.getElementsByTagName('img')].forEach(function(img){
 		if(img.src.match(/\.svg$/)){
 			img.style.background = 'white';
-			img.style.border = '0.5em solid white';
+			//img.style.border = '0.5em solid white';
 		}
 	});
 	load_css('u.tpl/pseudocode-dark-theme.css');
