@@ -145,6 +145,24 @@ else if(title_background){
 	load_css('u.tpl/reveal-title-background.css', 'screen');
 }
 
+let min_scale = 0.2;
+let max_scale = 2.0;
+
+if(get_option('scale')){
+	let scales = get_option('scale').match(/^([0-9.]+)(?:,([0-9.]+))?$/);
+	if(scales){
+		min_scale = max_scale = scales[1];
+		if(scales[2])
+			max_scale = scales[2];
+		if(min_scale > max_scale){
+			let tmp = min_scale;
+			min_scale = max_scale;
+			max_scale = tmp;
+		}
+	}
+	console.log(min_scale, max_scale);
+}
+
 window_onload(function(){
 	load_js('u.tpl/reveal/lib/js/head.min.js', false, function(){
 		load_js('u.tpl/reveal/js/reveal.js', false, function(){
@@ -152,6 +170,8 @@ window_onload(function(){
 			Reveal.initialize({
 				width: '100%',
 				height: '100%',
+				minScale: min_scale,
+				maxScale: max_scale,
 				history: true,
 				mouseWheel: true,
 				transition: transition,

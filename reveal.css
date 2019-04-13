@@ -16,9 +16,6 @@
 .reveal .slides pre code {
 	max-height:		800px;
 }
-.reveal .slides {
-	font-size:		3.3vh;
-}
 .reveal .slides section p + p {
 	margin-top:		1em;
 }
