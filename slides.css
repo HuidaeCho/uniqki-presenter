@@ -22,6 +22,22 @@
 #title .author + .affiliation {
 	margin-top:		0.5em;
 }
+#course-selector, #presenter-selector {
+	font-size:		10pt;
+	position:		absolute;
+	z-index:		9999;
+	pointer-events:		auto;
+	border-radius:		5px;
+	padding:		2px;
+	color:			black;
+	background-color:	#ffffffaa;
+}
+#presenter-selector {
+	right:			0px;
+}
+#course-selector a, #presenter-selector a {
+	color:			black !important;
+}
 .read {
 	display:		none;
 }

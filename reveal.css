@@ -1,18 +1,3 @@
-#course-selector, #presenter-selector {
-	font-size:		10pt;
-	position:		absolute;
-	z-index:		9999;
-	border-radius:		5px;
-	padding:		2px;
-	color:			black;
-	background-color:	#ffffffaa;
-}
-#presenter-selector {
-	right:			0px;
-}
-#course-selector a, #presenter-selector a {
-	color:			black;
-}
 .reveal .slides {
 	font-size:		3.5vmin;
 }

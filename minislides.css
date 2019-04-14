@@ -85,11 +85,6 @@ img {
 /*******************************************************************************
  *  Huidae Cho
 *******************************************************************************/
-#presenter-selector {
-	font-size:		10pt;
-	text-align:		right;
-}
-
 section {
 	overflow-x:		hidden !important;
 	overflow-y:		auto !important;
