@@ -66,3 +66,24 @@
 	height:			600px;
 }
 */
+table {
+	border-collapse:	collapse;
+	border-top:		3px solid black;
+	border-bottom:		3px solid black;
+}
+table caption {
+	text-align:		left;
+	font-size:		smaller;
+}
+table thead {
+	border-bottom:		3px solid black;
+}
+table th {
+	text-align:		left;
+	padding:		0.3em;
+}
+table td {
+	text-align:		left;
+	padding:		0.3em;
+	word-break:		break-all;
+}

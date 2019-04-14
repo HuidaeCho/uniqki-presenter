@@ -1,7 +1,7 @@
 .reveal .slides {
 	font-size:		3.5vmin;
 }
-.reveal .slides pre code {
+.reveal .slides section pre code {
 	max-height:		800px;
 }
 .reveal .slides section p {
@@ -19,4 +19,25 @@
 }
 .reveal .slides section .MathJax_Display {
 	margin-top:		0.5em;
+}
+.reveal .slides section table {
+	border-collapse:	collapse;
+	border-top:		3px solid black;
+	border-bottom:		3px solid black;
+}
+.reveal .slides section table caption {
+	text-align:		left;
+	font-size:		smaller;
+}
+.reveal .slides section table thead {
+	border-bottom:		3px solid black;
+}
+.reveal .slides section table th {
+	border:			none;
+	padding:		0.3em;
+}
+.reveal .slides section table td {
+	border:			none;
+	padding:		0.3em;
+	word-break:		break-all;
 }

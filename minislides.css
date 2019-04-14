@@ -1,3 +1,11 @@
+#title {
+	text-align:		center;
+}
+h1 {
+	font-size:		12vmin;
+	margin-top:		2em;
+	margin-bottom:		0.5em;
+}
 section {
 	overflow-x:		hidden !important;
 	overflow-y:		auto !important;
@@ -5,4 +13,5 @@ section {
 }
 ul {
 	list-style:		outside;
+	margin-left:		2vw;
 }
