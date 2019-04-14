@@ -13,10 +13,13 @@
 #course-selector a, #presenter-selector a {
 	color:			black;
 }
+.reveal .slides {
+	font-size:		4vmin;
+}
 .reveal .slides pre code {
 	max-height:		800px;
 }
-.reveal .slides section p + p {
+.reveal .slides section p {
 	margin-top:		1em;
 }
 .reveal .slides section img {
