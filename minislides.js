@@ -2,6 +2,7 @@ if(!get_option('asis'))
 	flatten_view();
 
 load_css('u.tpl/minislides/dist/minislides.min.css', 'screen');
+load_css('u.tpl/minislides/src/example.css', 'screen');
 load_highlight();
 load_mathjax();
 load_pseudocode();
