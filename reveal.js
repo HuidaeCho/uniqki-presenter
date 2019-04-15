@@ -124,35 +124,38 @@ if(dark_themes.includes(theme)){
 
 let sections = [...document.getElementsByTagName('section')]
 let background = get_option('background');
-if(background === '')
-	sections.forEach(function(section){
-		if(section.hasAttribute('data-background'))
-			section.removeAttribute('data-background');
-	});
-else if(background){
+if(background){
 	sections.forEach(function(section){
 		section.setAttribute('data-background', background);
 	});
-	load_css('u.tpl/reveal-background.css', 'screen');
+}
+let color = get_option('color');
+if(color){
+	sections.forEach(function(section){
+		[...section.childNodes].forEach(function(node){
+			if(node.nodeName.toLowerCase().match(/^h[0-9]$/))
+				node.style.color = color;
+		});
+		section.style.color = color;
+	});
 }
 
 let title = document.getElementById('title');
 let title_background = get_option('title-background');
-if(title_background === '' && title.hasAttribute('data-background'))
-	title.removeAttribute('data-background');
-else if(title_background){
+if(title_background){
 	let title_background_opacity = get_option('title-background-opacity');
-	let title_color = get_option('title-color');
 	title.setAttribute('data-background', title_background);
 	if(title_background_opacity)
 		title.setAttribute('data-background-opacity', title_background_opacity);
-	if(title_color){
-		[...title.childNodes].forEach(function(node){
-			if(node.nodeName.toLowerCase() == 'h1')
-				node.style.color = title_color;
-		});
-		title.style.color = title_color;
-	}
+}
+
+let title_color = get_option('title-color');
+if(title_color){
+	[...title.childNodes].forEach(function(node){
+		if(node.nodeName.toLowerCase() == 'h1')
+			node.style.color = title_color;
+	});
+	title.style.color = title_color;
 }
 
 let min_scale = 0.2;
