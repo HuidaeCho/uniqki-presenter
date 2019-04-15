@@ -36,7 +36,8 @@
 	right:			0px;
 }
 #course-selector a, #presenter-selector a {
-	color:			black !important;
+	color:			black;
+	line-height:		1em;
 }
 .read {
 	display:		none;
