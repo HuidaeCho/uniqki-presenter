@@ -141,8 +141,18 @@ let title_background = get_option('title-background');
 if(title_background === '' && title.hasAttribute('data-background'))
 	title.removeAttribute('data-background');
 else if(title_background){
+	let title_background_opacity = get_option('title-background-opacity');
+	let title_color = get_option('title-color');
 	title.setAttribute('data-background', title_background);
-	load_css('u.tpl/reveal-title-background.css', 'screen');
+	if(title_background_opacity)
+		title.setAttribute('data-background-opacity', title_background_opacity);
+	if(title_color){
+		[...title.childNodes].forEach(function(node){
+			if(node.nodeName.toLowerCase() == 'h1')
+				node.style.color = title_color;
+		});
+		title.style.color = title_color;
+	}
 }
 
 let min_scale = 0.2;
