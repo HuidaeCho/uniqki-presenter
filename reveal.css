@@ -22,15 +22,15 @@
 }
 .reveal .slides section table {
 	border-collapse:	collapse;
-	border-top:		3px solid black;
-	border-bottom:		3px solid black;
+	border-top:		1px solid black;
+	border-bottom:		1px solid black;
 }
 .reveal .slides section table caption {
 	text-align:		left;
 	font-size:		smaller;
 }
 .reveal .slides section table thead {
-	border-bottom:		3px solid black;
+	border-bottom:		1px solid black;
 }
 .reveal .slides section table th {
 	border:			none;
