@@ -157,25 +157,40 @@ if(title_color){
 	});
 	title.style.color = title_color;
 }else if(title_background && !title_background_opacity){
+	load_js('u.tpl/getAverageRGB.js');
 	window_onload(function(){
-		[...document.styleSheets].forEach(function(styleSheet){
-			if(!styleSheet.href.match(/\/theme\//)) return;
-			let add_new_rule = false;
-			let r = 128;
-			let g = 128;
-			let b = 128;
-			[...styleSheet.cssRules].forEach(function(cssRule){
-				if(!cssRule.selectorText || !cssRule.selectorText.match(/h1/)) return;
-				let rgb = cssRule.style.color.match(/rgb\( *([0-9]+), *([0-9]+) *, *([0-9]+) *\)/);
-				if(rgb && Number(rgb[1]) < r && Number(rgb[2]) < g && Number(rgb[3]) < b){
-					add_new_rule = true;
-					r = Number(rgb[1]);
-					g = Number(rgb[2]);
-					b = Number(rgb[3]);
-				}
+		let img = new Image();
+		img.src = title_background;
+		img.addEventListener('load', function(){
+			let average_rgb = getAverageRGB(img);
+			let average_r = average_rgb.r;
+			let average_g = average_rgb.g;
+			let average_b = average_rgb.b;
+			let dark = average_r < 128 && average_g < 128 && average_b < 128;
+			[...document.styleSheets].forEach(function(styleSheet){
+				if(!styleSheet.href.match(/\/theme\//)) return;
+				let add_new_rule = false;
+				let thresh = 50;
+				let r = 128 + (dark ? -1 : 1) * thresh;
+				let g = 128 + (dark ? -1 : 1) * thresh;
+				let b = 128 + (dark ? -1 : 1) * thresh;
+				[...styleSheet.cssRules].forEach(function(cssRule){
+					if(!cssRule.selectorText || !cssRule.selectorText.match(/h1/)) return;
+					let rgb = cssRule.style.color.match(/rgb\( *([0-9]+), *([0-9]+) *, *([0-9]+) *\)/);
+					if(!rgb) return;
+					let rr = Number(rgb[1]);
+					let gg = Number(rgb[2]);
+					let bb = Number(rgb[3]);
+					if((dark && rr < r && gg < g && bb < b) || (!dark && rr > r && gg > g && bb > b)){
+						add_new_rule = true;
+						r = rr;
+						g = gg;
+						b = bb;
+					}
+				});
+				if(add_new_rule)
+					styleSheet.insertRule('.reveal h1, .course, .course a, .author, .affiliation { color: rgb(' + (255-r) + ', ' + (255-g) + ', ' + (255-b) + '); }', styleSheet.cssRules.length);
 			});
-			if(add_new_rule)
-				styleSheet.insertRule('.reveal h1, .course, .course a, .author, .affiliation { color: rgb(' + (255-r) + ', ' + (255-g) + ', ' + (255-b) + '); }', styleSheet.cssRules.length);
 		});
 	});
 }
