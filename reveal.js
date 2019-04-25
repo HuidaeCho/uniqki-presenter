@@ -26,7 +26,7 @@ const transitions = [
 	'concave',
 	'zoom'
 ];
-let theme = get_option('theme') || themes[Math.floor(Math.random()*themes.length)];
+let theme = get_option('theme') || themes[Math.floor(Math.random()*themes.length)]; console.log(theme);
 let transition = transitions[Math.floor(Math.random()*transitions.length)];
 
 document.getElementById('main').classList.add('reveal');
@@ -119,7 +119,7 @@ if(dark_themes.includes(theme)){
 			//img.style.border = '0.5em solid white';
 		}
 	});
-	load_css('u.tpl/pseudocode-dark-theme.css');
+	load_css('u.tpl/pseudocode-dark-themes.css');
 }
 
 let sections = [...document.getElementsByTagName('section')]
@@ -142,8 +142,8 @@ if(color){
 
 let title = document.getElementById('title');
 let title_background = get_option('title-background');
+let title_background_opacity = get_option('title-background-opacity');
 if(title_background){
-	let title_background_opacity = get_option('title-background-opacity');
 	title.setAttribute('data-background', title_background);
 	if(title_background_opacity)
 		title.setAttribute('data-background-opacity', title_background_opacity);
@@ -156,6 +156,28 @@ if(title_color){
 			node.style.color = title_color;
 	});
 	title.style.color = title_color;
+}else if(title_background && !title_background_opacity){
+	window_onload(function(){
+		[...document.styleSheets].forEach(function(styleSheet){
+			if(!styleSheet.href.match(/\/theme\//)) return;
+			let add_new_rule = false;
+			let r = 128;
+			let g = 128;
+			let b = 128;
+			[...styleSheet.cssRules].forEach(function(cssRule){
+				if(!cssRule.selectorText || !cssRule.selectorText.match(/h1/)) return;
+				let rgb = cssRule.style.color.match(/rgb\( *([0-9]+), *([0-9]+) *, *([0-9]+) *\)/);
+				if(rgb && Number(rgb[1]) < r && Number(rgb[2]) < g && Number(rgb[3]) < b){
+					add_new_rule = true;
+					r = Number(rgb[1]);
+					g = Number(rgb[2]);
+					b = Number(rgb[3]);
+				}
+			});
+			if(add_new_rule)
+				styleSheet.insertRule('.reveal h1, .course, .course a, .author, .affiliation { color: rgb(' + (255-r) + ', ' + (255-g) + ', ' + (255-b) + '); }', styleSheet.cssRules.length);
+		});
+	});
 }
 
 let min_scale = 0.2;
@@ -173,7 +195,6 @@ if(get_option('scale')){
 			max_scale = tmp;
 		}
 	}
-	console.log(min_scale, max_scale);
 }
 
 window_onload(function(){
