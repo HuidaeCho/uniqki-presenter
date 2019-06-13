@@ -7,6 +7,9 @@
 .reveal .slides section p {
 	margin-top:		1em;
 }
+.reveal .slides section div > p:first-child {
+	margin-top:		0em;
+}
 .reveal .slides section img {
 	border:			0;
 }
