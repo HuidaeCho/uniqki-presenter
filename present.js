@@ -190,7 +190,7 @@ let options = [];
 let hasSlides = false;
 let courses = [];
 
-if(!document.getElementById('preview')){
+if(!document.getElementById('preview-main')){
 	let foundURL = window.location.search.match(rePresenter);
 	let removeAsis = foundURL != null;
 	let foundData = document.currentScript.getAttribute('data-presenter').match(rePresenter);
