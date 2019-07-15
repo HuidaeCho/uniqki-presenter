@@ -167,7 +167,7 @@ function loadPseudocode(){
 	loadPseudocodeCSS();
 }
 
-listenToEvent('load', function(){
+function presentOnLoad(){
 	[...document.getElementsByClassName('language-pseudocode')].forEach(function(node){
 		let code = node.textContent;
 		let template = document.createElement('template');
@@ -181,6 +181,10 @@ listenToEvent('load', function(){
 		else
 			hljs.highlightBlock(code);
 	});
+}
+
+listenToEvent('load', function(){
+	presentOnLoad();
 });
 
 let myHead = document.getElementsByTagName('head')[0];
