@@ -5,63 +5,63 @@ const presenters = [
 	'minislides',
 	'random',
 ];
-const default_presenter = 'reveal';
-const re_presenter = /^\??([a-z]+)(?:(:.*))?$/;
+const defaultPresenter = 'reveal';
+const rePresenter = /^\??([a-z]+)(?:(:.*))?$/;
 
-function add_presenter_selectors(){
-	let nested_sections = has_nested_sections();
-	add_presenter_selector('read', 'read');
-	add_presenter_selector('minislides', 'light');
-	add_presenter_selector('reveal', 'flat', ['flat']);
-	if(nested_sections)
-		add_presenter_selector('reveal', 'down');
-	add_presenter_selector('impress', 'deep');
-	add_presenter_selector('random', 'random', [], true);
+function addPresenterSelectors(){
+	let nestedSections = hasNestedSections();
+	addPresenterSelector('read', 'read');
+	addPresenterSelector('minislides', 'light');
+	addPresenterSelector('reveal', 'flat', ['flat']);
+	if(nestedSections)
+		addPresenterSelector('reveal', 'down');
+	addPresenterSelector('impress', 'deep');
+	addPresenterSelector('random', 'random', [], true);
 }
 
-function add_presenter_selector(selector, name, opts, last){
-	if(presenter == 'random' || presenter != selector || !has_same_options(opts)){
+function addPresenterSelector(selector, name, opts, last){
+	if(presenter == 'random' || presenter != selector || !hasSameOptions(opts)){
 		let a = document.createElement('a');
 		a.href = '?' + selector + (opts && opts.length ? ':' + opts.join(':') : '');
 		a.innerHTML = name;
-		presenter_selector.appendChild(a);
+		presenterSelector.appendChild(a);
 		if(!last){
 			let text = document.createTextNode(' . ');
-			presenter_selector.appendChild(text);
+			presenterSelector.appendChild(text);
 		}
 	}
 }
 
-function has_same_options(opts){
+function hasSameOptions(opts){
 	if(!opts || !opts.length){
 		if(!options.length)
 			return true;
-		if(options.length == 1 && get_option('asis'))
+		if(options.length == 1 && getOption('asis'))
 			return true;
 		return false;
 	}
-	if(get_option('asis')){
+	if(getOption('asis')){
 		if(opts.length != options.length - 1)
 			return false;
 	}else if(opts.length != options.length)
 		return false;
 
 	return opts.every(function(opt){
-		return get_option(opt);
+		return getOption(opt);
 	});
 }
 
-function get_option(opt){
-	const re_opt = new RegExp('^' + opt + '(?:=(.*))?$');
+function getOption(opt){
+	const reOpt = new RegExp('^' + opt + '(?:=(.*))?$');
 	for(let i = 0; i < options.length; i++){
-		let found = options[i].match(re_opt);
+		let found = options[i].match(reOpt);
 		if(found)
 			return found[1] || true;
 	}
 	return false;
 }
 
-function has_nested_sections(){
+function hasNestedSections(){
 	return [...view.childNodes].some(function(node){
 		if(node.nodeName.toLowerCase() == 'section'){
 			return [...node.childNodes].some(function(subnode){
@@ -71,103 +71,103 @@ function has_nested_sections(){
 	});
 }
 
-function flatten_view(){
-	let flatten = function(parent_node){
-		[...parent_node.childNodes].reverse().forEach(function(node){
+function flattenView(){
+	let flatten = function(parentNode){
+		[...parentNode.childNodes].reverse().forEach(function(node){
 			if(node.nodeName.toLowerCase() == 'section'){
 				flatten(node);
 				if(node.id == '' && node.innerText.replace(/^[0-9]+\u00a0*/, '') == '')
-					parent_node.removeChild(node);
+					parentNode.removeChild(node);
 				else
-					last_node = view.insertBefore(node, last_node);
+					lastNode = view.insertBefore(node, lastNode);
 			}
 		});
 	}
-	let last_node = document.getElementById('presenter');
+	let lastNode = document.getElementById('presenter');
 	flatten(view);
 }
 
-function load_css(css, media){
+function loadCSS(css, media){
 	let link = document.createElement('link');
 	link.rel = 'stylesheet';
 	link.href = css;
 	if(media)
 		link.media = media;
-	my_head.appendChild(link);
+	myHead.appendChild(link);
 }
 
-function load_common_presentation_css(){
-	const re_ucss = /\/u\.css$/;
+function loadCommonPresentationCSS(){
+	const reUcss = /\/u\.css$/;
 	[...document.getElementsByTagName('link')].some(function(link){
-		if(link.href.match(re_ucss)){
+		if(link.href.match(reUcss)){
 			link.media = 'print';
 			return true;
 		}
 	});
-	load_css('u.tpl/screen.css', 'screen');
-	load_css('u.tpl/slides.css', 'screen');
-	load_css('u.tpl/print.css', 'print');
+	loadCSS('u.tpl/screen.css', 'screen');
+	loadCSS('u.tpl/slides.css', 'screen');
+	loadCSS('u.tpl/print.css', 'print');
 }
 
-function load_js(js, async, callback){
+function loadJS(js, async, callback){
 	let script = document.createElement('script');
 	script.src = js;
 	if(async)
 		script.async = true;
 	if(callback)
 		script.onload = callback;
-	my_head.appendChild(script);
+	myHead.appendChild(script);
 }
 
-function load_highlight_css(){
-	//load_css('u.tpl/highlight.js/styles/atom-one-light.css');
-	load_css('u.tpl/hljs.css');
+function loadHighlightCSS(){
+	//loadCSS('u.tpl/highlight.js/styles/atom-one-light.css');
+	loadCSS('u.tpl/hljs.css');
 }
 
 
-function load_highlight_js(){
-	load_js('u.tpl/highlight/highlight.pack.js', false, function(){
+function loadHighlightJS(){
+	loadJS('u.tpl/highlight/highlight.pack.js', false, function(){
 		hljs.initHighlightingOnLoad();
 	});
 }
 
-function load_highlight(){
-	load_highlight_css();
-	load_highlight_js();
+function loadHighlight(){
+	loadHighlightCSS();
+	loadHighlightJS();
 }
 
-function load_mathjax_config(){
+function loadMathjaxConfig(){
 	let script = document.createElement('script');
 	script.type = 'text/x-mathjax-config';
 	script.innerHTML = "MathJax.Hub.Config({'CommonHTML': {scale: 85}, 'HTML-CSS': {scale: 85}, TeX: {equationNumbers: {autoNumber: 'AMS'}}, tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']], processEscapes: true}});";
-	my_head.appendChild(script);
+	myHead.appendChild(script);
 }
 
-function load_mathjax_js(){
-	load_js('u.tpl/MathJax/MathJax.js?config=TeX-AMS_CHTML', true);
+function loadMathjaxJS(){
+	loadJS('u.tpl/MathJax/MathJax.js?config=TeX-AMS_CHTML', true);
 }
 
-function load_mathjax(){
-	load_mathjax_config();
-	load_mathjax_js();
+function loadMathjax(){
+	loadMathjaxConfig();
+	loadMathjaxJS();
 }
 
-function load_pseudocode_css(){
-	load_css('u.tpl/katex/katex.min.css');
-	load_css('u.tpl/pseudocode/pseudocode.min.css');
+function loadPseudocodeCSS(){
+	loadCSS('u.tpl/katex/katex.min.css');
+	loadCSS('u.tpl/pseudocode/pseudocode.min.css');
 }
 
-function load_pseudocode_js(){
-	load_js('u.tpl/katex/katex.min.js');
-	load_js('u.tpl/pseudocode/pseudocode.min.js');
+function loadPseudocodeJS(){
+	loadJS('u.tpl/katex/katex.min.js');
+	loadJS('u.tpl/pseudocode/pseudocode.min.js');
 }
 
-function load_pseudocode(){
-	load_pseudocode_js();
-	load_pseudocode_css();
+function loadPseudocode(){
+	loadPseudocodeJS();
+	loadPseudocodeCSS();
 }
 
-window_onload(function(){
+listenToEvent('load', function(){
 	[...document.getElementsByClassName('language-pseudocode')].forEach(function(node){
 		let code = node.textContent;
 		let template = document.createElement('template');
@@ -183,29 +183,29 @@ window_onload(function(){
 	});
 });
 
-let my_head = document.getElementsByTagName('head')[0];
+let myHead = document.getElementsByTagName('head')[0];
 let view = document.getElementById('view');
 let presenter = presenters[0];
 let options = [];
-let has_slides = false;
+let hasSlides = false;
 let courses = [];
 
 if(!document.getElementById('preview')){
-	let found_url = window.location.search.match(re_presenter);
-	let remove_asis = found_url != null;
-	let found_data = document.currentScript.getAttribute('data-presenter').match(re_presenter);
-	has_slides = found_data && found_data[1] == 'present';
+	let foundURL = window.location.search.match(rePresenter);
+	let removeAsis = foundURL != null;
+	let foundData = document.currentScript.getAttribute('data-presenter').match(rePresenter);
+	hasSlides = foundData && foundData[1] == 'present';
 
-	let found = found_url || found_data;
+	let found = foundURL || foundData;
 	if(found){
 		if(found[1] == 'present')
-			found = (default_presenter + (found[2] || '')).match(re_presenter);
+			found = (defaultPresenter + (found[2] || '')).match(rePresenter);
 		presenters.some(function(p){
 			if(found[1] == p){
 				presenter = p;
 				if(found[2]){
 					let opts = found[2];
-					if(remove_asis)
+					if(removeAsis)
 						opts = opts.replace(':asis', '');
 					options = opts.substr(1).split(':');
 				}
@@ -218,13 +218,13 @@ if(!document.getElementById('preview')){
 	});
 }
 
-if(presenter != presenters[0] && !get_option('asis')){
+if(presenter != presenters[0] && !getOption('asis')){
 	let overview = document.createElement('section');
-	let last_node = null;
+	let lastNode = null;
 	[...view.childNodes].reverse().forEach(function(node){
-		let node_name = node.nodeName.toLowerCase();
-		if(node_name != '#comment' && node_name != 'script' && node_name != 'section')
-			last_node = overview.insertBefore(node, last_node);
+		let nodeName = node.nodeName.toLowerCase();
+		if(nodeName != '#comment' && nodeName != 'script' && nodeName != 'section')
+			lastNode = overview.insertBefore(node, lastNode);
 	});
 	if(!overview.textContent.match(/^[ \t\n]*$/)){
 		overview.id = 'title';
@@ -232,33 +232,33 @@ if(presenter != presenters[0] && !get_option('asis')){
 	}
 }
 
-let nav_selectors;
-let presenter_selector;
-if(has_slides || presenter != 'read'){
-	nav_selectors = document.createElement('nav');
-	document.getElementById('main').insertBefore(nav_selectors, view);
+let navSelectors;
+let presenterSelector;
+if(hasSlides || presenter != 'read'){
+	navSelectors = document.createElement('nav');
+	document.getElementById('main').insertBefore(navSelectors, view);
 
-	presenter_selector = document.createElement('div');
-	presenter_selector.id = 'presenter-selector';
-	nav_selectors.appendChild(presenter_selector);
+	presenterSelector = document.createElement('div');
+	presenterSelector.id = 'presenter-selector';
+	navSelectors.appendChild(presenterSelector);
 
-	if(has_slides)
-		add_presenter_selectors();
+	if(hasSlides)
+		addPresenterSelectors();
 	else
-		add_presenter_selector('read', 'read', [], true);
+		addPresenterSelector('read', 'read', [], true);
 }
 
-let course_selector;
+let courseSelector;
 if(presenter != 'read' && courses.length){
-	course_selector = document.createElement('div');
-	course_selector.id = 'course-selector';
-	nav_selectors.insertBefore(course_selector, presenter_selector);
+	courseSelector = document.createElement('div');
+	courseSelector.id = 'course-selector';
+	navSelectors.insertBefore(courseSelector, presenterSelector);
 
 	for(let i = 0; i < courses.length; i++){
-		course_selector.innerHTML += courses[i];
+		courseSelector.innerHTML += courses[i];
 		if(i < courses.length - 1)
-			course_selector.innerHTML += ' . ';
+			courseSelector.innerHTML += ' . ';
 	}
 }
 
-load_js('u.tpl/' + presenter + '.js');
+loadJS('u.tpl/' + presenter + '.js');

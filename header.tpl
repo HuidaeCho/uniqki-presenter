@@ -8,10 +8,9 @@
 <link rel="alternate" type="application/rss+xml" title="[[recent_changes]]" href="[[CGI]]?rss" />
 <script src="u.tpl/u.js"></script>
 <script>
-window_onload(function(){
+listenToEvent('load', function(){
 	if(!window.location.href.match(/^file:/))
-		ajax_request('[[CGI]]/[[PAGE]]?user_info', null, process_menu,
-			'text/plain');
+		ajaxRequest('[[CGI]]/[[PAGE]]?user_info', null, processMenu, 'text/plain');
 });
 </script>
 </head>
