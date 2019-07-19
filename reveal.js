@@ -98,7 +98,7 @@ function onHashchange(){
 	}
 }
 
-window.addEventListener('hashchange', function(){
+addEvent(window, 'hashchange', function(){
 	onHashchange();
 });
 onHashchange();
@@ -161,7 +161,7 @@ if(titleColor){
 	windowOnLoad(function(){
 		let img = new Image();
 		img.src = titleBackground;
-		img.addEventListener('load', function(){
+		addEvent(img, 'load', function(){
 			let averageRGB = getAverageRGB(img);
 			let averageR = averageRGB.r;
 			let averageG = averageRGB.g;
