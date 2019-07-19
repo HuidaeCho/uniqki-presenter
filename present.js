@@ -183,7 +183,7 @@ function presentOnLoad(){
 	});
 }
 
-listenToEvent('load', function(){
+windowOnLoad(function(){
 	presentOnLoad();
 });
 
