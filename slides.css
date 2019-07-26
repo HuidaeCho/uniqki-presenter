@@ -16,10 +16,13 @@
 #title .course + .author {
 	margin-top:		1em;
 }
+#title .author + .affiliation {
+	margin-top:		0.5em;
+}
 #title .affiliation {
 	font-size:		smaller;
 }
-#title .author + .affiliation {
+#title .affiliation + .affiliation {
 	margin-top:		0.5em;
 }
 #course-selector, #presenter-selector {

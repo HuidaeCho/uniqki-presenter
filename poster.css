@@ -1,0 +1,59 @@
+body {
+	margin:			0;
+}
+article {
+	width:			46.95in;
+	height:			34.94in;
+	border:			3px solid black;
+	font-family:		Times New Roman;
+	font-size:		300%;
+}
+#title {
+	background-image:	linear-gradient(to bottom right, skyblue, lightgrey);
+	margin:			0;
+	padding-bottom:		0.5em;
+	text-shadow:		none;
+}
+#title h1 {
+	margin:			0 0 0.1em;
+	font-size:		300%;
+	text-align:		center;
+	text-shadow:		none;
+}
+#course-selector {
+	display:		none;
+}
+#presenter-selector {
+	font-size:		50%;
+}
+#sections {
+	padding:		0.5in;
+	column-count:		3;
+	column-rule:		5px solid black;
+}
+#authors, #affiliations, #courses {
+	text-align:		center;
+}
+#authors {
+	font-size:		150%;
+}
+.author, .affiliation, .course {
+	display:		inline;
+}
+.author + .author:before {
+	content:		', ';
+}
+.affiliation + .affiliation:before, .course + .course:before {
+	content:		' / ';
+}
+@media screen {
+	article {
+		transform-origin:	0 0;
+		transform:		scale(0.3);
+	}
+}
+@media print {
+	nav, #toc {
+		display:		none;
+	}
+}

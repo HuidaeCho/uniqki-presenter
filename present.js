@@ -3,10 +3,15 @@ const presenters = [
 	'impress',
 	'reveal',
 	'minislides',
-	'random',
+	'poster',
+	'random'
 ];
 const defaultPresenter = 'reveal';
 const rePresenter = /^\??([a-z]+)(?:(:.*))?$/;
+const titleInfoClasses = [
+	'course',
+	'affiliation'
+];
 
 function addPresenterSelectors(){
 	let nestedSections = hasNestedSections();
@@ -16,6 +21,7 @@ function addPresenterSelectors(){
 	if(nestedSections)
 		addPresenterSelector('reveal', 'down');
 	addPresenterSelector('impress', 'deep');
+	addPresenterSelector('poster', 'poster');
 	addPresenterSelector('random', 'random', [], true);
 }
 
@@ -85,6 +91,16 @@ function flattenView(){
 	}
 	let lastNode = document.getElementById('presenter');
 	flatten(view);
+}
+
+function createSectionsDiv(){
+	let sections = document.createElement('div');
+	sections.id = 'sections';
+	[...view.childNodes].forEach(function(node){
+		if(node.nodeName.toLowerCase() == 'section' && node.id != 'title')
+			sections.appendChild(node);
+	});
+	view.insertBefore(sections, document.getElementById('presenter'));
 }
 
 function loadCSS(css, media){
@@ -191,14 +207,13 @@ let myHead = document.getElementsByTagName('head')[0];
 let view = document.getElementById('view');
 let presenter = presenters[0];
 let options = [];
-let hasSlides = false;
-let courses = [];
+let courseSelector;
+let presenterSelector;
 
-if(!document.getElementById('preview-main')){
+if(view){
 	let foundURL = window.location.search.match(rePresenter);
 	let removeAsis = foundURL != null;
 	let foundData = document.currentScript.getAttribute('data-presenter').match(rePresenter);
-	hasSlides = foundData && foundData[1] == 'present';
 
 	let found = foundURL || foundData;
 	if(found){
@@ -217,52 +232,51 @@ if(!document.getElementById('preview-main')){
 			}
 		});
 	}
-	[...document.getElementsByClassName('course')].forEach(function(course){
-		courses.push(course.innerHTML);
-	});
-}
 
-if(presenter != presenters[0] && !getOption('asis')){
-	let overview = document.createElement('section');
-	let lastNode = null;
-	[...view.childNodes].reverse().forEach(function(node){
-		let nodeName = node.nodeName.toLowerCase();
-		if(nodeName != '#comment' && nodeName != 'script' && nodeName != 'section')
-			lastNode = overview.insertBefore(node, lastNode);
-	});
-	if(!overview.textContent.match(/^[ \t\n]*$/)){
-		overview.id = 'title';
-		view.insertBefore(overview, view.childNodes[0]);
+	if(presenter != presenters[0] && !getOption('asis')){
+		let overview = document.createElement('section');
+		let lastNode = null;
+		[...view.childNodes].reverse().forEach(function(node){
+			let nodeName = node.nodeName.toLowerCase();
+			if(nodeName != '#comment' && nodeName != 'script' && nodeName != 'section')
+				lastNode = overview.insertBefore(node, lastNode);
+		});
+		if(!overview.textContent.match(/^[ \t\n]*$/)){
+			overview.id = 'title';
+			view.insertBefore(overview, view.childNodes[0]);
+		}
 	}
-}
 
-let navSelectors;
-let presenterSelector;
-if(hasSlides || presenter != 'read'){
-	navSelectors = document.createElement('nav');
+	let navSelectors = document.createElement('nav');
 	document.getElementById('main').insertBefore(navSelectors, view);
-
 	presenterSelector = document.createElement('div');
 	presenterSelector.id = 'presenter-selector';
 	navSelectors.appendChild(presenterSelector);
+	addPresenterSelectors();
 
-	if(hasSlides)
-		addPresenterSelectors();
-	else
-		addPresenterSelector('read', 'read', [], true);
-}
+	let courses = [];
+	[...document.getElementsByClassName('course')].forEach(function(node){
+		let course = node.innerHTML.replace(/\.\.\./, ', ');
+		courses.push(course);
+	});
+	if(presenter != 'read' && courses.length){
+		courseSelector = document.createElement('div');
+		courseSelector.id = 'course-selector';
+		navSelectors.insertBefore(courseSelector, presenterSelector);
 
-let courseSelector;
-if(presenter != 'read' && courses.length){
-	courseSelector = document.createElement('div');
-	courseSelector.id = 'course-selector';
-	navSelectors.insertBefore(courseSelector, presenterSelector);
-
-	for(let i = 0; i < courses.length; i++){
-		courseSelector.innerHTML += courses[i];
-		if(i < courses.length - 1)
-			courseSelector.innerHTML += ' . ';
+		for(let i = 0; i < courses.length; i++){
+			courseSelector.innerHTML += courses[i];
+			if(i < courses.length - 1)
+				courseSelector.innerHTML += ' . ';
+		}
 	}
 }
+
+let separator = presenter == 'poster' ? ', ' : '<br />';
+titleInfoClasses.forEach(function(infoClass){
+	[...document.getElementsByClassName(infoClass)].forEach(function(node){
+		node.innerHTML = node.innerHTML.replace(/\.\.\./, separator);
+	});
+});
 
 loadJS('u.tpl/' + presenter + '.js');

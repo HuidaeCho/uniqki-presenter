@@ -8,10 +8,13 @@
 .course + .author {
 	margin-top:		1em;
 }
+.author + .affiliation {
+	margin-top:		0.5em;
+}
 .affiliation {
 	font-size:		smaller;
 }
-.author + .affiliation {
+.affiliation + .affiliation {
 	margin-top:		0.5em;
 }
 .present {
