@@ -207,6 +207,7 @@ let myHead = document.getElementsByTagName('head')[0];
 let view = document.getElementById('view');
 let presenter = presenters[0];
 let options = [];
+let pagePresenter;
 let courseSelector;
 let presenterSelector;
 
@@ -214,6 +215,8 @@ if(view){
 	let foundURL = window.location.search.match(rePresenter);
 	let removeAsis = foundURL != null;
 	let foundData = document.currentScript.getAttribute('data-presenter').match(rePresenter);
+	if(foundData)
+		pagePresenter = foundData[1];
 
 	let found = foundURL || foundData;
 	if(found){
@@ -247,12 +250,16 @@ if(view){
 		}
 	}
 
-	let navSelectors = document.createElement('nav');
-	document.getElementById('main').insertBefore(navSelectors, view);
-	presenterSelector = document.createElement('div');
-	presenterSelector.id = 'presenter-selector';
-	navSelectors.appendChild(presenterSelector);
-	addPresenterSelectors();
+	let navSelectors;
+	console.log(pagePresenter, presenter);
+	if(pagePresenter != 'read' || presenter != 'read'){
+		navSelectors = document.createElement('nav');
+		document.getElementById('main').insertBefore(navSelectors, view);
+		presenterSelector = document.createElement('div');
+		presenterSelector.id = 'presenter-selector';
+		navSelectors.appendChild(presenterSelector);
+		addPresenterSelectors();
+	}
 
 	let courses = [];
 	[...document.getElementsByClassName('course')].forEach(function(node){
