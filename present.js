@@ -251,7 +251,6 @@ if(view){
 	}
 
 	let navSelectors;
-	console.log(pagePresenter, presenter);
 	if(pagePresenter != 'read' || presenter != 'read'){
 		navSelectors = document.createElement('nav');
 		document.getElementById('main').insertBefore(navSelectors, view);
