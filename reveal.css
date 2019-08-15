@@ -44,3 +44,12 @@
 	padding:		0.3em;
 	word-break:		break-all;
 }
+.reveal .slides section .text-left {
+	text-align:		left;
+}
+.reveal .slides section .text-center {
+	text-align:		center;
+}
+.reveal .slides section .text-right {
+	text-align:		right;
+}
