@@ -285,4 +285,5 @@ titleInfoClasses.forEach(function(infoClass){
 	});
 });
 
+console.log('Total sections:', document.getElementsByClassName('section-number').length/2);
 loadJS('u.tpl/' + presenter + '.js');
