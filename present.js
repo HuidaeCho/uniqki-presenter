@@ -7,11 +7,13 @@ const presenters = [
 	'random'
 ];
 const defaultPresenter = 'reveal';
-const rePresenter = /^\??([a-z]+)(?:(:.*))?$/;
 const titleInfoClasses = [
 	'course',
 	'affiliation'
 ];
+const rePresenter = /^\??([a-z]+)(?:(:.*))?$/;
+const reAbsoluteURL = /^(?:https?:\/\/|\/)/;
+const reUcss = /\/u\.css$/;
 
 function addPresenterSelectors(){
 	let nestedSections = hasNestedSections();
@@ -58,9 +60,9 @@ function hasSameOptions(opts){
 }
 
 function getOption(opt){
-	const reOpt = new RegExp('^' + opt + '(?:=(.*))?$');
+	const reOption = new RegExp('^' + opt + '(?:=(.*))?$');
 	for(let i = 0; i < options.length; i++){
-		let found = options[i].match(reOpt);
+		let found = options[i].match(reOption);
 		if(found)
 			return found[1] || true;
 	}
@@ -103,17 +105,22 @@ function createSectionsDiv(){
 	view.insertBefore(sections, document.getElementById('presenter'));
 }
 
+function getAbsoluteURL(url){
+	if(!url.match(reAbsoluteURL))
+		url = window.location.pathname.replace(/^(.*\/)u(?:\/.*)?$/, '$1') + url;
+	return url;
+}
+
 function loadCSS(css, media){
 	let link = document.createElement('link');
 	link.rel = 'stylesheet';
-	link.href = css;
+	link.href = getAbsoluteURL(css);
 	if(media)
 		link.media = media;
 	myHead.appendChild(link);
 }
 
 function loadCommonPresentationCSS(){
-	const reUcss = /\/u\.css$/;
 	[...document.getElementsByTagName('link')].some(function(link){
 		if(link.href.match(reUcss)){
 			link.media = 'print';
@@ -127,7 +134,7 @@ function loadCommonPresentationCSS(){
 
 function loadJS(js, async, callback){
 	let script = document.createElement('script');
-	script.src = js;
+	script.src = getAbsoluteURL(js);
 	if(async)
 		script.async = true;
 	if(callback)

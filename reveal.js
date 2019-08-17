@@ -225,14 +225,14 @@ windowOnLoad(function(){
 				mouseWheel: true,
 				transition: transition,
 				math: {
-					mathjax: 'u.tpl/MathJax/MathJax.js',
+					mathjax: getAbsoluteURL('u.tpl/MathJax/MathJax.js'),
 					config: mathjaxConfig
 				},
 				dependencies: [
-					{ src: 'u.tpl/reveal/plugin/markdown/marked.js' },
-					{ src: 'u.tpl/reveal/plugin/markdown/markdown.js' },
-					{ src: 'u.tpl/reveal/plugin/notes/notes.js', async: true },
-					{ src: 'u.tpl/reveal/plugin/math/math.js', async: true }
+					{ src: getAbsoluteURL('u.tpl/reveal/plugin/markdown/marked.js') },
+					{ src: getAbsoluteURL('u.tpl/reveal/plugin/markdown/markdown.js') },
+					{ src: getAbsoluteURL('u.tpl/reveal/plugin/notes/notes.js'), async: true },
+					{ src: getAbsoluteURL('u.tpl/reveal/plugin/math/math.js'), async: true }
 				]
 			});
 		});
