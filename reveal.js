@@ -168,7 +168,7 @@ if(titleColor){
 			let averageB = averageRGB.b;
 			let dark = averageR < 128 && averageG < 128 && averageB < 128;
 			[...document.styleSheets].forEach(function(styleSheet){
-				if(!styleSheet.href.match(/\/theme\//)) return;
+				if(!styleSheet.href || !styleSheet.href.match(/\/theme\//)) return;
 				let addNewRule = false;
 				let thresh = 50;
 				let r = 128 + (dark ? -1 : 1) * thresh;
