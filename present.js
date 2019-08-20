@@ -106,8 +106,12 @@ function createSectionsDiv(){
 }
 
 function getAbsoluteURL(url){
-	if(!url.match(reAbsoluteURL))
-		url = window.location.pathname.replace(/^(.*\/)u(?:\/.*)?$/, '$1') + url;
+	if(!url.match(reAbsoluteURL)){
+		if(window.location.pathname.match(/^.*\/u(?:\/.*)?$/))
+			url = window.location.pathname.replace(/^(.*\/)u(?:\/.*)?$/, '$1') + url;
+		else
+			url = window.location.pathname.replace(/^(.*\/).*$/, '$1') + url;
+	}
 	return url;
 }
 
