@@ -154,6 +154,14 @@ if(titleColor){
 	[...title.childNodes].forEach(function(node){
 		if(node.nodeName.toLowerCase() == 'h1')
 			node.style.color = titleColor;
+		else if(node.classList && node.classList.contains('course')){
+			[...node.childNodes].forEach(function(subnode){
+				if(subnode.nodeName.toLowerCase() == 'a'){
+					subnode.style.color = titleColor;
+					subnode.style.textDecoration = 'underline';
+				}
+			});
+		}
 	});
 	title.style.color = titleColor;
 }else if(titleBackground && !titleBackgroundOpacity){
