@@ -221,28 +221,26 @@ if(getOption('scale')){
 }
 
 windowOnLoad(function(){
-	loadJS('u.tpl/reveal/lib/js/head.min.js', false, function(){
-		loadJS('u.tpl/reveal/js/reveal.js', false, function(){
-			let mathjaxConfig = window.location.href.match(/^file:/) ? 'TeX-AMS_SVG-full' : 'TeX-AMS_HTML-full';
-			Reveal.initialize({
-				width: '100%',
-				height: '100%',
-				minScale: minScale,
-				maxScale: maxScale,
-				history: true,
-				mouseWheel: true,
-				transition: transition,
-				math: {
-					mathjax: getAbsoluteURL('u.tpl/MathJax/MathJax.js'),
-					config: mathjaxConfig
-				},
-				dependencies: [
-					{ src: getAbsoluteURL('u.tpl/reveal/plugin/markdown/marked.js') },
-					{ src: getAbsoluteURL('u.tpl/reveal/plugin/markdown/markdown.js') },
-					{ src: getAbsoluteURL('u.tpl/reveal/plugin/notes/notes.js'), async: true },
-					{ src: getAbsoluteURL('u.tpl/reveal/plugin/math/math.js'), async: true }
-				]
-			});
+	loadJS('u.tpl/reveal/js/reveal.js', false, function(){
+		let mathjaxConfig = window.location.href.match(/^file:/) ? 'TeX-AMS_SVG-full' : 'TeX-AMS_HTML-full';
+		Reveal.initialize({
+			width: '100%',
+			height: '100%',
+			minScale: minScale,
+			maxScale: maxScale,
+			history: true,
+			mouseWheel: true,
+			transition: transition,
+			math: {
+				mathjax: getAbsoluteURL('u.tpl/MathJax/MathJax.js'),
+				config: mathjaxConfig
+			},
+			dependencies: [
+				{ src: getAbsoluteURL('u.tpl/reveal/plugin/markdown/marked.js') },
+				{ src: getAbsoluteURL('u.tpl/reveal/plugin/markdown/markdown.js') },
+				{ src: getAbsoluteURL('u.tpl/reveal/plugin/notes/notes.js'), async: true },
+				{ src: getAbsoluteURL('u.tpl/reveal/plugin/math/math.js'), async: true }
+			]
 		});
 	});
 });
