@@ -53,3 +53,7 @@
 .reveal .slides section .text-right {
 	text-align:		right;
 }
+.reveal blockquote {
+	background:		none;
+	box-shadow:		none;
+}
