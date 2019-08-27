@@ -2,7 +2,7 @@
 	text-align:		right;
 	font-size:		smaller;
 }
-h1 > code.hljs, h2 > code.hljs, h3 > code.hljs, h3 > code.hljs, h4 > code.hljs, h5 > code.hljs, h6 > code.hljs, p > code.hljs, li > code.hljs, td > code.hljs {
+h1 > code.hljs, h2 > code.hljs, h3 > code.hljs, h3 > code.hljs, h4 > code.hljs, h5 > code.hljs, h6 > code.hljs, p > code.hljs, li > code.hljs, th > code.hljs, td > code.hljs {
 	display:		inline;
 	padding:		1px;
 }
