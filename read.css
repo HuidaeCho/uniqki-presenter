@@ -17,6 +17,9 @@
 .affiliation + .affiliation {
 	margin-top:		0.5em;
 }
+.keywords {
+	font-size:		0.5em;
+}
 .present {
 	display:		none;
 }

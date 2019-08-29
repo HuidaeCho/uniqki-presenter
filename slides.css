@@ -25,6 +25,9 @@
 #title .affiliation + .affiliation {
 	margin-top:		0.5em;
 }
+.keywords {
+	font-size:		0.5em;
+}
 #course-selector, #presenter-selector {
 	font-size:		10pt;
 	position:		absolute;

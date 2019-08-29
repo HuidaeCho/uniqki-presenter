@@ -46,6 +46,9 @@ article {
 .affiliation + .affiliation:before, .course + .course:before {
 	content:		' / ';
 }
+.keywords {
+	font-size:		0.5em;
+}
 @media screen {
 	article {
 		transform-origin:	0 0;
