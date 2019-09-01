@@ -23,3 +23,11 @@
 .present {
 	display:		none;
 }
+/* https://www.webmaster-source.com/2012/04/24/pure-css-blockquote-styling/ */
+blockquote {
+	margin-left:		1.7em;
+}
+blockquote:before {
+	left:			-0.55em;
+	top:			-0.35em;
+}
