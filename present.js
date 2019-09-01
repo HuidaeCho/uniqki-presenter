@@ -79,7 +79,7 @@ function hasNestedSections(){
 	});
 }
 
-function flattenView(){
+function flattenNode(topNode, lastNode){
 	let flatten = function(parentNode){
 		[...parentNode.childNodes].reverse().forEach(function(node){
 			if(node.nodeName.toLowerCase() == 'section'){
@@ -87,12 +87,15 @@ function flattenView(){
 				if(node.id == '' && node.innerText.replace(/^[0-9]+\u00a0*/, '') == '')
 					parentNode.removeChild(node);
 				else
-					lastNode = view.insertBefore(node, lastNode);
+					lastNode = topNode.insertBefore(node, lastNode);
 			}
 		});
 	}
-	let lastNode = document.getElementById('presenter');
-	flatten(view);
+	flatten(topNode);
+}
+
+function flattenView(){
+	flattenNode(view, document.getElementById('presenter'));
 }
 
 function createSectionsDiv(){

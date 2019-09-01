@@ -26,7 +26,8 @@ const transitions = [
 	'concave',
 	'zoom'
 ];
-let theme = getOption('theme') || themes[Math.floor(Math.random()*themes.length)]; console.log(theme);
+let theme = getOption('theme') || themes[Math.floor(Math.random()*themes.length)];
+console.log('Theme:', theme);
 let transition = transitions[Math.floor(Math.random()*transitions.length)];
 
 document.getElementById('main').classList.add('reveal');
@@ -37,24 +38,27 @@ if(!getOption('asis')){
 		flattenView();
 	else
 		[...document.getElementsByTagName('section')].forEach(function(section){
-			let firstSection;
-			if([...section.childNodes].some(function(node){
-				if(node.nodeName.toLowerCase() == 'section'){
-					firstSection = node;
-					return true;
-				}
-			})){
-				let sec = document.createElement('section');
-				sec.id = section.id;
-				section.removeAttribute('id');
-				section.insertBefore(sec, firstSection);
-				let lastNode = null;
-				[...section.childNodes].reverse().forEach(function(node){
-					if(node.nodeName.toLowerCase() != 'section'){
-						sec.insertBefore(node, lastNode);
-						lastNode = node;
+			if(section.parentNode.nodeName.toLowerCase() != 'section'){
+				let firstSubsection;
+				if([...section.childNodes].some(function(node){
+					if(node.nodeName.toLowerCase() == 'section'){
+						firstSubsection = node;
+						return true;
 					}
-				});
+				})){
+					flattenNode(section);
+					let sec = document.createElement('section');
+					sec.id = section.id;
+					section.removeAttribute('id');
+					section.insertBefore(sec, firstSubsection);
+					let lastNode = null;
+					[...section.childNodes].reverse().forEach(function(node){
+						if(node.nodeName.toLowerCase() != 'section'){
+							sec.insertBefore(node, lastNode);
+							lastNode = node;
+						}
+					});
+				}
 			}
 		});
 /*
