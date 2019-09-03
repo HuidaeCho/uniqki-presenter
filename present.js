@@ -16,28 +16,36 @@ const reAbsoluteURL = /^(?:https?:\/\/|\/)/;
 const reUcss = /\/u\.css$/;
 const rePunctChars = /[`~!@#$%^&*()\-_=+[{\]}\\|;:'",<.>/?]$/;
 
-function addPresenterSelectors(){
+function addPresenterSelectors(full){
 	let nestedSections = hasNestedSections();
-	addPresenterSelector('read', 'read');
-	addPresenterSelector('minislides', 'light');
-	addPresenterSelector('reveal', 'flat', ['flat']);
-	if(nestedSections)
-		addPresenterSelector('reveal', 'down');
-	addPresenterSelector('impress', 'deep');
-	addPresenterSelector('poster', 'poster');
-	addPresenterSelector('random', 'random', [], true);
+	if(full){
+		addPresenterSelector('read');
+		addPresenterSelector('present');
+		addPresenterSelector('minislides', 'light');
+		addPresenterSelector('reveal', 'flat', ['flat']);
+		if(nestedSections)
+			addPresenterSelector('reveal', 'down');
+		addPresenterSelector('impress', 'deep');
+		addPresenterSelector('poster');
+		addPresenterSelector('random', null, []);
+	}else{
+		addPresenterSelector('read', null, []);
+		addPresenterSelector('present', null, []);
+	}
 }
 
 function addPresenterSelector(selector, name, opts, last){
-	if(presenter == 'random' || presenter != selector || !hasSameOptions(opts)){
-		let a = document.createElement('a');
-		a.href = '?' + selector + (opts && opts.length ? ':' + opts.join(':') : '');
-		a.innerHTML = name;
-		presenterSelector.appendChild(a);
-		if(!last){
+	if((selector == 'present' && window.location.search) ||
+	   ((presenter == 'read' || selector != 'present') &&
+	    (presenter == 'random' || presenter != selector || !hasSameOptions(opts)))){
+		if(presenterSelector.childNodes.length){
 			let text = document.createTextNode(' . ');
 			presenterSelector.appendChild(text);
 		}
+		let a = document.createElement('a');
+		a.href = selector == 'present' ? '?' : '?' + selector + (opts && opts.length ? ':' + opts.join(':') : '');
+		a.innerHTML = name || selector;
+		presenterSelector.appendChild(a);
 	}
 }
 
