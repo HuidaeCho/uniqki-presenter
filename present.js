@@ -290,6 +290,33 @@ if(view){
 				courseSelector.innerHTML += ' . ';
 		}
 	}
+	if(presenter == 'read'){
+		[...document.getElementsByTagName('section')].forEach(function(section){
+			let childNodes = section.childNodes;
+			for(let i = childNodes.length - 1; i >= 0; i--){
+				let node = childNodes[i];
+				if(node.nodeName.toLowerCase() == 'p'){
+					while(childNodes[--i].nodeName.toLowerCase() == '#text' && childNodes[i].nodeValue == '\n');
+					let node2 = childNodes[i];
+					if(node2.nodeName.toLowerCase() == 'p'){
+						if(node2.lastChild.nodeName.toLowerCase() == 'br'){
+							node2.removeChild(node2.lastChild);
+						}
+						else{
+							node2.innerHTML += ' ' + node.innerHTML;
+							section.removeChild(node);
+						}
+						i++;
+					}
+				}
+			}
+		});
+	}else{
+		[...document.getElementsByTagName('p')].forEach(function(p){
+			if(p.lastChild.nodeName.toLowerCase() == 'br')
+				p.removeChild(p.lastChild);
+		});
+	}
 }
 
 let separator = presenter == 'poster' ? ', ' : '<br />';
