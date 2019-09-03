@@ -303,7 +303,7 @@ if(view){
 							node2.removeChild(node2.lastChild);
 						}
 						else{
-							node2.innerHTML += ' ' + node.innerHTML;
+							node2.innerHTML += (node2.innerHTML.substr(node2.innerHTML.length-1) == '.' ? ' ' : '. ') + node.innerHTML;
 							section.removeChild(node);
 						}
 						i++;
