@@ -1,10 +1,6 @@
 .reveal .slides {
 	font-size:		3.5vmin;
 }
-.reveal .slides section pre {
-	display:		inline-block;
-	width:			auto;
-}
 .reveal .slides section pre code {
 	max-height:		800px;
 }
