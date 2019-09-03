@@ -1,6 +1,10 @@
 .reveal .slides {
 	font-size:		3.5vmin;
 }
+.reveal .slides section pre {
+	display:		inline-block;
+	width:			auto;
+}
 .reveal .slides section pre code {
 	max-height:		800px;
 }
@@ -53,7 +57,7 @@
 .reveal .slides section .text-right {
 	text-align:		right;
 }
-.reveal blockquote {
+.reveal .slides section blockquote {
 	background:		none;
 	box-shadow:		none;
 }
