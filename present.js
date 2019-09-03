@@ -14,6 +14,7 @@ const titleInfoClasses = [
 const rePresenter = /^\??([a-z]+)(?:(:.*))?$/;
 const reAbsoluteURL = /^(?:https?:\/\/|\/)/;
 const reUcss = /\/u\.css$/;
+const rePunctChars = /[`~!@#$%^&*()\-_=+[{\]}\\|;:'",<.>/?]$/;
 
 function addPresenterSelectors(){
 	let nestedSections = hasNestedSections();
@@ -303,7 +304,7 @@ if(view){
 							node2.removeChild(node2.lastChild);
 						}
 						else{
-							node2.innerHTML += (node2.innerHTML.match(/[`~!@#$%^&*()-_=+[{\]}\|;:'",<.>/?]$/) ? ' ' : '. ') + node.innerHTML;
+							node2.innerHTML += (node2.innerHTML.match(rePunctChars) ? ' ' : '. ') + node.innerHTML;
 							section.removeChild(node);
 						}
 						i++;
@@ -317,6 +318,13 @@ if(view){
 				p.removeChild(p.lastChild);
 		});
 	}
+	[...document.getElementsByClassName('language-u-fit')].forEach(function(code){
+		if(code.parentNode.nodeName.toLowerCase() == 'pre'){
+			let pre = code.parentNode;
+			pre.style.display = 'inline-block';
+			pre.style.width = 'auto';
+		}
+	});
 }
 
 let separator = presenter == 'poster' ? ', ' : '<br />';
