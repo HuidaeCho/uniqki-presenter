@@ -104,7 +104,7 @@ function flattenNode(topNode, lastNode){
 }
 
 function flattenView(){
-	flattenNode(view, document.getElementById('presenter'));
+	flattenNode(view, null);
 }
 
 function createSectionsDiv(){
@@ -114,7 +114,7 @@ function createSectionsDiv(){
 		if(node.nodeName.toLowerCase() == 'section' && node.id != 'title')
 			sections.appendChild(node);
 	});
-	view.insertBefore(sections, document.getElementById('presenter'));
+	view.insertBefore(sections, null);
 }
 
 function getAbsoluteURL(url){
@@ -133,7 +133,7 @@ function loadCSS(css, media){
 	link.href = getAbsoluteURL(css);
 	if(media)
 		link.media = media;
-	myHead.appendChild(link);
+	head.appendChild(link);
 }
 
 function loadCommonPresentationCSS(){
@@ -155,7 +155,7 @@ function loadJS(js, async, callback){
 		script.async = true;
 	if(callback)
 		script.onload = callback;
-	myHead.appendChild(script);
+	head.appendChild(script);
 }
 
 function loadHighlightCSS(){
@@ -179,7 +179,7 @@ function loadMathjaxConfig(){
 	let script = document.createElement('script');
 	script.type = 'text/x-mathjax-config';
 	script.innerHTML = "MathJax.Hub.Config({'CommonHTML': {scale: 85}, 'HTML-CSS': {scale: 85}, TeX: {equationNumbers: {autoNumber: 'AMS'}}, tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']], processEscapes: true}});";
-	myHead.appendChild(script);
+	head.appendChild(script);
 }
 
 function loadMathjaxJS(){
@@ -226,7 +226,7 @@ windowOnLoad(function(){
 	presentOnLoad();
 });
 
-let myHead = document.getElementsByTagName('head')[0];
+let head = document.getElementsByTagName('head')[0];
 let view = document.getElementById('view');
 let presenter = presenters[0];
 let options = [];
@@ -235,6 +235,9 @@ let courseSelector;
 let presenterSelector;
 
 if(view){
+	// https://github.com/hakimel/reveal.js/issues/1366
+	view.removeChild(document.getElementById('presenter'));
+
 	let foundURL = window.location.search.match(rePresenter);
 	let removeAsis = foundURL != null;
 	let foundData = document.currentScript.getAttribute('data-presenter').match(rePresenter);
