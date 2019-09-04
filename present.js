@@ -12,7 +12,6 @@ const titleInfoClasses = [
 	'affiliation'
 ];
 const rePresenter = /^\??([a-z]+)(?:(:.*))?$/;
-const reAbsoluteURL = /^(?:https?:\/\/|\/)/;
 const reUcss = /\/u\.css$/;
 const rePunctChars = /[`~!@#$%^&*()\-_=+[{\]}\\|;:'",<.>/?]$/;
 
@@ -117,25 +116,6 @@ function createSectionsDiv(){
 	view.insertBefore(sections, null);
 }
 
-function getAbsoluteURL(url){
-	if(!url.match(reAbsoluteURL)){
-		if(window.location.pathname.match(/^.*\/u(?:\/.*)?$/))
-			url = window.location.pathname.replace(/^(.*\/)u(?:\/.*)?$/, '$1') + url;
-		else
-			url = window.location.pathname.replace(/^(.*\/).*$/, '$1') + url;
-	}
-	return url;
-}
-
-function loadCSS(css, media){
-	let link = document.createElement('link');
-	link.rel = 'stylesheet';
-	link.href = getAbsoluteURL(css);
-	if(media)
-		link.media = media;
-	head.appendChild(link);
-}
-
 function loadCommonPresentationCSS(){
 	[...document.getElementsByTagName('link')].some(function(link){
 		if(link.href.match(reUcss)){
@@ -146,16 +126,6 @@ function loadCommonPresentationCSS(){
 	loadCSS('u.tpl/screen.css', 'screen');
 	loadCSS('u.tpl/slides.css', 'screen');
 	loadCSS('u.tpl/print.css', 'print');
-}
-
-function loadJS(js, async, callback){
-	let script = document.createElement('script');
-	script.src = getAbsoluteURL(js);
-	if(async)
-		script.async = true;
-	if(callback)
-		script.onload = callback;
-	head.appendChild(script);
 }
 
 function loadHighlightCSS(){
@@ -226,7 +196,6 @@ windowOnLoad(function(){
 	presentOnLoad();
 });
 
-let head = document.getElementsByTagName('head')[0];
 let view = document.getElementById('view');
 let presenter = presenters[0];
 let options = [];
