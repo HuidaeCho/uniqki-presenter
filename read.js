@@ -13,6 +13,8 @@ ajaxRequest('top-menu.html', null, function(xhr){
 	let menu = document.createElement('div');
 	menu.id = 'top-menu';
 	items.forEach(function(item){
+		if(item.href.replace(/\.html(#|$)/, '$1') == window.location.href.replace(/\.html(#|$)/, '$1'))
+			item.classList.add('active');
 		item.onclick = function(){
 			items.forEach(function(i){
 				i.classList.remove('active');
