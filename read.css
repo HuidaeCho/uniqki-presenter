@@ -1,3 +1,32 @@
+#site-description {
+	display:		inline-block;
+	width:			0%;
+	white-space:		nowrap;
+}
+#top-menu {
+	display:		inline-block;
+	width:			calc(100% - 4px);
+	text-align:		right;
+	font-size:		smaller;
+}
+#top-menu a {
+	display:		inline-block;
+	text-align:		center;
+	width:			100px;
+	border-radius:		5px 5px 0 0;
+	padding:		2px;
+	margin:			0 0 -2px 5px;
+	color:			darkgreen;
+	background:		#aaaaaa;
+	border:			1px solid #aaaaaa;
+	border-bottom:		none;
+}
+#top-menu a:hover {
+	background:		#cccccc;
+}
+#top-menu .active {
+	background:		white;
+}
 #presenter-selector {
 	font-size:		10pt;
 	text-align:		right;

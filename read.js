@@ -4,3 +4,21 @@ loadPseudocode();
 loadCSS('u.tpl/screen.css', 'screen');
 loadCSS('u.tpl/read.css', 'screen');
 loadCSS('u.tpl/print.css', 'print');
+
+ajaxRequest('top-menu.html', null, function(xhr){
+	let view = ajaxResponseXML(xhr).getElementById('view');
+	if(!view) return;
+	let items = [...view.getElementsByTagName('a')];
+	if(!items.length) return;
+	let menu = document.createElement('div');
+	menu.id = 'top-menu';
+	items.forEach(function(item){
+		if(item.href.replace(/\.html$/, '') == window.location.href.replace(/\.html$/, '')){
+			item.classList.add('active');
+			console.log(item.classList);
+		}
+		menu.appendChild(item);
+	});
+	let header = document.getElementsByTagName('header')[0];
+	header.appendChild(menu);
+});
