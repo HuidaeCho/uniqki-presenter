@@ -13,12 +13,9 @@ ajaxRequest('top-menu.html', null, function(xhr){
 	let menu = document.createElement('div');
 	menu.id = 'top-menu';
 	items.forEach(function(item){
-		if(item.href.replace(/\.html$/, '') == window.location.href.replace(/\.html$/, '')){
+		if(item.href.replace(/\.html$/, '') == window.location.href.replace(/\.html$/, ''))
 			item.classList.add('active');
-			console.log(item.classList);
-		}
 		menu.appendChild(item);
 	});
-	let header = document.getElementsByTagName('header')[0];
-	header.appendChild(menu);
+	document.getElementsByTagName('header')[0].appendChild(menu);
 });
