@@ -47,7 +47,10 @@
 	margin-top:		0.5em;
 }
 .keywords {
-	font-size:		0.5em;
+	text-align:		right;
+}
+.keywords b {
+	font-weight:		normal;
 }
 .present {
 	display:		none;
