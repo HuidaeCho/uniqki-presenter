@@ -13,7 +13,8 @@ const titleInfoClasses = [
 ];
 const rePresenter = /^\??([a-z]+)(?:(:.*))?$/;
 const reUcss = /\/u\.css$/;
-const rePunctChars = /[`~!@#$%^&*()\-_=+[{\]}\\|;:'",<.>/?]$/;
+const reSpecialChars = /[`~!@#$%^&*()\-_=+[{\]}\\|;:'",<.>/?]$/;
+const rePunctChars = /[`~!@#$%^&*(\-_=+[{\]}\\|;:'",<.>/?]$/;
 
 function addPresenterSelectors(full){
 	let nestedSections = hasNestedSections();
@@ -272,25 +273,30 @@ if(view){
 		}
 	}
 	if(presenter == 'read'){
-		[...document.getElementsByTagName('section')].forEach(function(section){
-			let childNodes = section.childNodes;
+		let mergePNodes = function(parentNode){
+			let childNodes = parentNode.childNodes;
 			for(let i = childNodes.length - 1; i >= 0; i--){
 				let node = childNodes[i];
+				if(node.classList && node.classList.contains('read'))
+					continue;
 				if(node.nodeName.toLowerCase() == 'p'){
-					while(childNodes[--i].nodeName.toLowerCase() == '#text' && childNodes[i].nodeValue == '\n');
+					while(i > 0 && childNodes[--i].nodeName.toLowerCase() == '#text' && childNodes[i].nodeValue == '\n');
 					let node2 = childNodes[i];
 					if(node2.nodeName.toLowerCase() == 'p'){
-						if(node2.lastChild.nodeName.toLowerCase() == 'br'){
+						if(node2.lastChild.nodeName.toLowerCase() == 'br')
 							node2.removeChild(node2.lastChild);
-						}
 						else{
-							node2.innerHTML += (node2.innerHTML.match(rePunctChars) ? ' ' : '. ') + node.innerHTML;
-							section.removeChild(node);
+							node2.innerHTML += (node2.innerHTML.match(rePunctChars) ? ' ' : '. ') + node.innerHTML + (node.innerHTML.match(rePunctChars) ? '' : '.');
+							parentNode.removeChild(node);
 						}
 						i++;
 					}
-				}
+				}else
+					mergePNodes(node);
 			}
+		};
+		[...document.getElementsByTagName('section')].forEach(function(section){
+			mergePNodes(section);
 		});
 	}else{
 		[...document.getElementsByTagName('p')].forEach(function(p){
