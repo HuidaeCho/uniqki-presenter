@@ -1,3 +1,8 @@
+@media (max-width: 360px) {
+	#site-title {
+		display:		inline-block;
+	}
+}
 #site-description {
 	display:		inline-block;
 	width:			0;
