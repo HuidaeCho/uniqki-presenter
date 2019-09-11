@@ -1,11 +1,11 @@
 #site-description {
 	display:		inline-block;
-	width:			0%;
+	width:			0;
 	white-space:		nowrap;
 }
 #top-menu {
 	display:		inline-block;
-	width:			calc(100% - 4px);
+	width:			calc(100% - 5px);
 	text-align:		right;
 	font-size:		smaller;
 }
