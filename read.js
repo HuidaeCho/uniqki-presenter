@@ -50,21 +50,23 @@ ajaxRequest('read-config.html', null, function(xhr){
 			let maxWidth = 0;
 			menuItems.forEach(function(a){
 				topMenu.appendChild(a);
-				if(a.clientWidth > maxWidth)
-					maxWidth = a.clientWidth;
+				if(a.offsetWidth > maxWidth)
+					maxWidth = a.offsetWidth;
 			});
-			let bodyWidth = document.body.clientWidth;
+			let bodyWidth = document.body.offsetWidth;
 			let totalWidth = menuItems.length * maxWidth;
 			if(totalWidth > bodyWidth)
 				maxWidth = bodyWidth / menuItems.length;
+			let aStyle = window.getComputedStyle(menuItems[0]);
+			let extraWidth = parseFloat(aStyle.paddingLeft.replace('px', '')) + parseFloat(aStyle.paddingRight.replace('px', '')) + parseFloat(aStyle.borderLeftWidth.replace('px', '')) + parseFloat(aStyle.borderRightWidth.replace('px', ''));
 			menuItems.forEach(function(a){
-				a.style.width = maxWidth + 'px';
+				a.style.width = (maxWidth - extraWidth) + 'px';
 			});
 			let siteDesc = document.getElementById('site-description');
-			if(siteDesc.clientWidth + topMenu.clientWidth > bodyWidth){
+			if(siteDesc.offsetWidth + topMenu.offsetWidth > bodyWidth){
 				let siteTitle = document.getElementById('site-title');
 				siteTitle.style.display = 'inline-block';
-				if(siteTitle.clientWidth + siteDesc.clientWidth > bodyWidth)
+				if(siteTitle.offsetWidth + siteDesc.offsetWidth > bodyWidth)
 					header.removeChild(siteDesc);
 			}else
 				siteDesc.style.width = '0px';
