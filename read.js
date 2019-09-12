@@ -51,6 +51,9 @@ ajaxRequest('read-config.html', null, function(xhr){
 				if(a.clientWidth > maxWidth)
 					maxWidth = a.clientWidth;
 			});
+			let totalWidth = menuItems.length * maxWidth;
+			if(totalWidth > document.body.clientWidth)
+				maxWidth = totalWidth / menuItems.length;
 			menuItems.forEach(function(a){
 				a.style.width = maxWidth + 'px';
 			});
