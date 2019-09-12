@@ -45,6 +45,7 @@ ajaxRequest('read-config.html', null, function(xhr){
 				header.removeChild(lastChild);
 			let topMenu = document.createElement('div');
 			topMenu.id = 'top-menu';
+			topMenu.style.display = 'inline-block';
 			header.appendChild(topMenu);
 
 			let maxWidth = 0;
@@ -63,6 +64,7 @@ ajaxRequest('read-config.html', null, function(xhr){
 				a.style.width = (maxWidth - extraWidth) + 'px';
 			});
 			let siteDesc = document.getElementById('site-description');
+			siteDesc.style.display = 'inline-block';
 			if(siteDesc.offsetWidth + topMenu.offsetWidth > bodyWidth){
 				let siteTitle = document.getElementById('site-title');
 				siteTitle.style.display = 'inline-block';
