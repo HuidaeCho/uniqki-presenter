@@ -39,8 +39,8 @@ ajaxRequest('read-config.html', null, function(xhr){
 		if(menuItems.length){
 			let menu = document.createElement('div');
 			menu.id = 'top-menu';
-			menuItems.forEach(function(i){
-				menu.appendChild(i);
+			menuItems.forEach(function(a){
+				menu.appendChild(a);
 			});
 			let header = document.getElementsByTagName('header')[0];
 			let lastChild = header.lastChild;
