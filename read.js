@@ -12,7 +12,6 @@ ajaxRequest('read-config.html', null, function(xhr){
 	let config;
 	if((config = xml.getElementById('site-title-config'))){
 		let items = [...config.getElementsByTagName('li')];
-		if(!items.length) return;
 		items.forEach(function(item){
 			let text = item.firstChild;
 			if(!text || text.nodeName.toLowerCase() != '#text') return;
@@ -23,9 +22,6 @@ ajaxRequest('read-config.html', null, function(xhr){
 	}
 	if((config = xml.getElementById('top-menu-config'))){
 		let items = [...config.getElementsByTagName('li')];
-		if(!items.length) return;
-		let menu = document.createElement('div');
-		menu.id = 'top-menu';
 		let menuItems = [];
 		items.forEach(function(item){
 			let a = item.firstChild;
@@ -38,9 +34,15 @@ ajaxRequest('read-config.html', null, function(xhr){
 				});
 				this.classList.add('active');
 			};
-			menu.appendChild(a);
 			menuItems.push(a);
 		});
-		document.getElementsByTagName('header')[0].appendChild(menu);
+		if(menuItems.length){
+			let menu = document.createElement('div');
+			menu.id = 'top-menu';
+			menuItems.forEach(function(i){
+				menu.appendChild(i);
+			});
+			document.getElementsByTagName('header')[0].appendChild(menu);
+		}
 	}
 });
