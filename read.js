@@ -37,16 +37,23 @@ ajaxRequest('read-config.html', null, function(xhr){
 			menuItems.push(a);
 		});
 		if(menuItems.length){
-			let menu = document.createElement('div');
-			menu.id = 'top-menu';
-			menuItems.forEach(function(a){
-				menu.appendChild(a);
-			});
 			let header = document.getElementsByTagName('header')[0];
 			let lastChild = header.lastChild;
 			if(lastChild.nodeName.toLowerCase() == '#text' && lastChild.textContent == '\n')
 				header.removeChild(lastChild);
+			let menu = document.createElement('div');
+			menu.id = 'top-menu';
 			header.appendChild(menu);
+
+			let maxWidth = 0;
+			menuItems.forEach(function(a){
+				menu.appendChild(a);
+				if(a.clientWidth > maxWidth)
+					maxWidth = a.clientWidth;
+			});
+			menuItems.forEach(function(a){
+				a.style.width = maxWidth + 'px';
+			});
 		}
 	}
 });
