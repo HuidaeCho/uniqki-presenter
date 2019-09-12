@@ -17,7 +17,7 @@ ajaxRequest('read-config.html', null, function(xhr){
 			let text = item.firstChild;
 			if(!text || text.nodeName.toLowerCase() != '#text') return;
 			let value = text.textContent.split(/:/);
-			if(value[0] == 'mobile' && window.matchMedia('(max-width:360px)').matches)
+			if(value[0] == 'mobile-display' && window.matchMedia('(max-width:360px)').matches)
 				document.getElementById('site-title').style.display = value[1];
 		});
 	}
