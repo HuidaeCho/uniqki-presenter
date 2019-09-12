@@ -65,6 +65,8 @@ ajaxRequest('read-config.html', null, function(xhr){
 			});
 			let siteDesc = document.getElementById('site-description');
 			siteDesc.style.display = 'inline-block';
+			// border width is greater than 1px in Firefox?
+			topMenu.style.marginBottom = '-' + window.getComputedStyle(document.getElementById('main')).borderTopWidth;
 			if(siteDesc.offsetWidth + topMenu.offsetWidth > bodyWidth){
 				let siteTitle = document.getElementById('site-title');
 				siteTitle.style.display = 'inline-block';
