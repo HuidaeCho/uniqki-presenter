@@ -10,6 +10,7 @@ ajaxRequest('read-config.html', null, function(xhr){
 	let view = xml.getElementById('view');
 	if(!view) return;
 	let config;
+	/* XXX: UNUSED; REFERENCE ONLY
 	if((config = xml.getElementById('site-title-config'))){
 		let items = [...config.getElementsByTagName('li')];
 		items.forEach(function(item){
@@ -20,6 +21,7 @@ ajaxRequest('read-config.html', null, function(xhr){
 				document.getElementById('site-title').style.display = value[1];
 		});
 	}
+	*/
 	if((config = xml.getElementById('top-menu-config'))){
 		let items = [...config.getElementsByTagName('li')];
 		let menuItems = [];
@@ -41,22 +43,32 @@ ajaxRequest('read-config.html', null, function(xhr){
 			let lastChild = header.lastChild;
 			if(lastChild.nodeName.toLowerCase() == '#text' && lastChild.textContent == '\n')
 				header.removeChild(lastChild);
-			let menu = document.createElement('div');
-			menu.id = 'top-menu';
-			header.appendChild(menu);
+			let topMenu = document.createElement('div');
+			topMenu.id = 'top-menu';
+			header.appendChild(topMenu);
 
 			let maxWidth = 0;
 			menuItems.forEach(function(a){
-				menu.appendChild(a);
+				topMenu.appendChild(a);
 				if(a.clientWidth > maxWidth)
 					maxWidth = a.clientWidth;
 			});
+			let bodyWidth = document.body.clientWidth;
 			let totalWidth = menuItems.length * maxWidth;
-			if(totalWidth > document.body.clientWidth)
-				maxWidth = totalWidth / menuItems.length;
+			if(totalWidth > bodyWidth)
+				maxWidth = bodyWidth / menuItems.length;
 			menuItems.forEach(function(a){
 				a.style.width = maxWidth + 'px';
 			});
+			let siteDesc = document.getElementById('site-description');
+			if(siteDesc.clientWidth + topMenu.clientWidth > bodyWidth){
+				let siteTitle = document.getElementById('site-title');
+				siteTitle.style.display = 'inline-block';
+				if(siteTitle.clientWidth + siteDesc.clientWidth > bodyWidth)
+					header.removeChild(siteDesc);
+			}else
+				siteDesc.style.width = '0px';
+			topMenu.style.width = '100%';
 		}
 	}
 });

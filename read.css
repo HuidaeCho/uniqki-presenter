@@ -1,11 +1,9 @@
 #site-description {
 	display:		inline-block;
-	width:			0;
 	white-space:		nowrap;
 }
 #top-menu {
 	display:		inline-block;
-	width:			100%;
 	text-align:		right;
 	font-size:		smaller;
 }
