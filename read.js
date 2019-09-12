@@ -42,7 +42,11 @@ ajaxRequest('read-config.html', null, function(xhr){
 			menuItems.forEach(function(i){
 				menu.appendChild(i);
 			});
-			document.getElementsByTagName('header')[0].appendChild(menu);
+			let header = document.getElementsByTagName('header')[0];
+			let lastChild = header.lastChild;
+			if(lastChild.nodeName.toLowerCase() == '#text' && lastChild.textContent == '\n')
+				header.removeChild(lastChild);
+			header.appendChild(menu);
 		}
 	}
 });
