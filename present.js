@@ -14,7 +14,7 @@ const titleInfoClasses = [
 const rePresenter = /^\??([a-z]+)(?:(:.*))?$/;
 const reUcss = /\/u\.css$/;
 const reSpecialChars = /[`~!@#$%^&*()\-_=+[{\]}\\|;:'",<.>/?]$/;
-const rePunctChars = /[`~!@#$%^&*(\-_=+[{\]}\\|;:'",<.>/?]$/;
+const rePunctChars = /[`~!@#$%^&*(\-_=+[{\]}\\|;:'",<./?]$/;
 
 function addPresenterSelectors(full){
 	let nestedSections = hasNestedSections();
