@@ -295,8 +295,9 @@ if(view){
 					mergePNodes(node);
 			}
 		};
-		[...document.getElementsByTagName('section')].forEach(function(section){
-			mergePNodes(section);
+		[...view.childNodes].forEach(function(node){
+			if(node.nodeName.toLowerCase() == 'section')
+				mergePNodes(node);
 		});
 	}else{
 		[...document.getElementsByTagName('p')].forEach(function(p){
