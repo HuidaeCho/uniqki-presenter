@@ -13,12 +13,12 @@ blockquote {
 	line-height:		1.45;
 	position:		relative;
 }
-blockquote:before {
+blockquote::before {
 	display:		block;
 	content:		'\201C';
 	font-size:		3em;
 	position:		absolute;
 }
-blockquote cite:before {
+blockquote cite::before {
 	content:		'\2014\2009';
 }

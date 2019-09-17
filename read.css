@@ -50,11 +50,54 @@
 .present {
 	display:		none;
 }
+.homework, .discussion, .exercises, .exercise, .home-exercise {
+	vertical-align:		super;
+	font-size:		0.8em;
+}
+.homework, .discussion, .quiz, .exam {
+	color:			red;
+}
+.exercises, .exercise {
+	color:			gray;
+}
+.home-exercise {
+	color:			purple;
+}
+body {
+	counter-reset:		lecture homework discussion exercise home-exercise quiz;
+}
+.lecture > span, .homework > span, .discussion > span, .exercise > span, .home-exercise > span, .quiz > span, .exam > span {
+	display:		none;
+}
+.lecture::after {
+	counter-increment:	lecture;
+	content:		' ' counter(lecture) ':';
+}
+.homework::after {
+	counter-increment:	homework;
+	content:		' ' counter(homework) ':';
+}
+.discussion::after {
+	counter-increment:	discussion;
+	content:		' ' counter(discussion) ':';
+}
+.exercise::after {
+	counter-increment:	exercise;
+	content:		' ' counter(exercise) ':';
+}
+.home-exercise::after {
+	counter-increment:	home-exercise;
+	content:		' ' counter(home-exercise) ':';
+}
+.quiz::after {
+	counter-increment:	quiz;
+	content:		' ' counter(quiz);
+}
 /* https://www.webmaster-source.com/2012/04/24/pure-css-blockquote-styling/ */
 blockquote {
 	margin-left:		1.7em;
 }
-blockquote:before {
+blockquote::before {
 	left:			-0.55em;
 	top:			-0.35em;
 }

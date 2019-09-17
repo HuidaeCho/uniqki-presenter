@@ -40,10 +40,10 @@ article {
 .author, .affiliation, .course {
 	display:		inline;
 }
-.author + .author:before {
+.author + .author::before {
 	content:		', ';
 }
-.affiliation + .affiliation:before, .course + .course:before {
+.affiliation + .affiliation::before, .course + .course::before {
 	content:		' / ';
 }
 .keywords {
@@ -64,7 +64,7 @@ article {
 blockquote {
 	margin-left:		1.7em;
 }
-blockquote:before {
+blockquote::before {
 	left:			-0.55em;
 	top:			-0.35em;
 }
