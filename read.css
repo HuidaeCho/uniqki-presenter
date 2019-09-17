@@ -63,6 +63,7 @@
 .home-exercise {
 	color:			purple;
 }
+/* XXX: Use inline Perl code instead for better compability with old or text browsers that do not support CSS styling
 body {
 	counter-reset:		lecture homework discussion exercise home-exercise quiz;
 }
@@ -71,28 +72,29 @@ body {
 }
 .lecture::after {
 	counter-increment:	lecture;
-	content:		' ' counter(lecture) ':';
+	content:		counter(lecture) ':';
 }
 .homework::after {
 	counter-increment:	homework;
-	content:		' ' counter(homework) ':';
+	content:		counter(homework) ':';
 }
 .discussion::after {
 	counter-increment:	discussion;
-	content:		' ' counter(discussion) ':';
+	content:		counter(discussion) ':';
 }
 .exercise::after {
 	counter-increment:	exercise;
-	content:		' ' counter(exercise) ':';
+	content:		counter(exercise) ':';
 }
 .home-exercise::after {
 	counter-increment:	home-exercise;
-	content:		' ' counter(home-exercise) ':';
+	content:		counter(home-exercise) ':';
 }
 .quiz::after {
 	counter-increment:	quiz;
-	content:		' ' counter(quiz);
+	content:		counter(quiz);
 }
+*/
 /* https://www.webmaster-source.com/2012/04/24/pure-css-blockquote-styling/ */
 blockquote {
 	margin-left:		1.7em;
