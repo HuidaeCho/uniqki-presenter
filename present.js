@@ -306,7 +306,6 @@ if(view){
 				p.removeChild(p.lastChild);
 		});
 		[...document.getElementsByTagName('p')].forEach(function(p){
-					console.log(p.innerHTML);
 			if([...p.childNodes].every(function(node){
 				let nodeName = node.nodeName.toLowerCase();
 				if(nodeName == 'a'){
