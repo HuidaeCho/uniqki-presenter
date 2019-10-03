@@ -15,6 +15,7 @@ const rePresenter = /^\??([a-z]+)(?:(:.*))?$/;
 const reUcss = /\/u\.css$/;
 const reSpecialChars = /[`~!@#$%^&*()\-_=+[{\]}\\|;:'",<.>/?]$/;
 const rePunctChars = /[`~!@#$%^&*(\-_=+[{\]}\\|;:'",<.>/?]$/;
+const reWhitespaceChars = /^[ \t\r\n]*$/;
 
 function addPresenterSelectors(full){
 	let nestedSections = hasNestedSections();
@@ -303,6 +304,24 @@ if(view){
 		[...document.getElementsByTagName('p')].forEach(function(p){
 			if(p.lastChild.nodeName.toLowerCase() == 'br')
 				p.removeChild(p.lastChild);
+		});
+		[...document.getElementsByTagName('p')].forEach(function(p){
+					console.log(p.innerHTML);
+			if([...p.childNodes].every(function(node){
+				let nodeName = node.nodeName.toLowerCase();
+				if(nodeName == 'a'){
+					if(node.childNodes.length != 1 || node.childNodes[0].nodeName.toLowerCase() != 'img')
+						return false;
+				}else
+				if(nodeName == '#text'){
+					if(!node.nodeValue.match(reWhitespaceChars))
+						return false;
+				}else
+				if(nodeName != 'img')
+					return false;
+				return true;
+			}))
+				p.classList.add('figure');
 		});
 	}
 	[...document.getElementsByClassName('language-u-fit')].forEach(function(code){
