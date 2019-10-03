@@ -63,3 +63,14 @@
 .reveal .slides section ol ol ol {
 	list-style-type:	lower-roman;
 }
+.reveal .slides section:not(#title) {
+	text-align:		left;
+}
+.reveal .slides section h1,
+.reveal .slides section h2,
+.reveal .slides section h3,
+.reveal .slides section h4,
+.reveal .slides section h5,
+.reveal .slides section h6 {
+	text-align:		center;
+}

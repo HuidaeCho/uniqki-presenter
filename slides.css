@@ -28,6 +28,11 @@
 .keywords {
 	font-size:		0.5em;
 }
+.inline-keywords {
+	font-size:		0.8em;
+	vertical-align:		super;
+	color:			gray;
+}
 #course-selector, #presenter-selector {
 	font-size:		10pt;
 	position:		absolute;
@@ -101,4 +106,8 @@ blockquote {
 blockquote:before {
 	left:			-0.25em;
 	top:			-0.05em;
+}
+.figure, .cite {
+	font-size:		small;
+	text-align:		center;
 }
