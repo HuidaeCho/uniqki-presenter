@@ -28,11 +28,6 @@
 .keywords {
 	font-size:		0.5em;
 }
-.inline-keywords {
-	font-size:		0.8em;
-	vertical-align:		super;
-	color:			gray;
-}
 #course-selector, #presenter-selector {
 	font-size:		10pt;
 	position:		absolute;

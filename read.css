@@ -46,6 +46,11 @@
 .keywords b {
 	font-weight:		normal;
 }
+.inline-keywords {
+	font-size:		0.8em;
+	vertical-align:		super;
+	color:			gray;
+}
 .present {
 	display:		none;
 }
