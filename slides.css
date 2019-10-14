@@ -99,7 +99,7 @@ blockquote {
 	margin-left:		1.7em;
 }
 blockquote::before {
-	left:			-0.45em;
+	left:			-0.55em;
 	top:			-0.05em;
 }
 .figure, .cite {
