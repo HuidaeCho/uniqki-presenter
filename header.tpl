@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="u.tpl/u.css" />
 <link rel="alternate" type="application/rss+xml" title="[[recent_changes]]" href="[[CGI]]?rss" />
+<link rel="icon" href="favicon.ico" />
 <script src="u.tpl/u.js"></script>
 <script>
 windowOnLoad(function(){

@@ -98,8 +98,8 @@ table td {
 blockquote {
 	margin-left:		1.7em;
 }
-blockquote:before {
-	left:			-0.25em;
+blockquote::before {
+	left:			-0.45em;
 	top:			-0.05em;
 }
 .figure, .cite {
