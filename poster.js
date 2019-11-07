@@ -23,5 +23,12 @@ if(!getOption('asis')){
 loadHighlight();
 loadMathjax();
 loadPseudocode();
-loadCommonPresentationCSS();
-loadCSS('u.tpl/poster.css');
+[...document.getElementsByTagName('link')].some(function(link){
+	if(link.href.match(reUcss)){
+		link.parentNode.removeChild(link);
+		return true;
+	}
+});
+loadCSS('u.tpl/screen.css', 'screen, print');
+loadCSS('u.tpl/slides.css', 'screen, print');
+loadCSS('u.tpl/poster.css', 'screen, print');
