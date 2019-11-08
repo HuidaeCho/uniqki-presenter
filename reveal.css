@@ -42,7 +42,6 @@
 .reveal .slides section table td {
 	border:			none;
 	padding:		0.3em;
-	word-break:		break-all;
 }
 .reveal .slides section .text-left {
 	text-align:		left;
