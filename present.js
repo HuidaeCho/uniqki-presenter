@@ -273,7 +273,7 @@ if(view){
 				courseSelector.innerHTML += ' . ';
 		}
 	}
-	if(presenter == 'read'){
+	if(pagePresenter != 'read' && presenter == 'read'){
 		let mergePNodes = function(parentNode){
 			let childNodes = parentNode.childNodes;
 			for(let i = childNodes.length - 1; i >= 0; i--){
