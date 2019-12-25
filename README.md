@@ -1,7 +1,8 @@
 # Uniqki Presenter
 
-These JavaScript and CSS files turn [Uniqki](https://github.com/HuidaeCho/uniqki) pages into presentable slides using
-minislides, reveal.js, and impress.js.
+These JavaScript and CSS files turn [Uniqki](https://github.com/HuidaeCho/uniqki)
+pages into presentable slides and posters using minislides, reveal.js, and
+impress.js.
 
 ## License
 
