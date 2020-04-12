@@ -28,7 +28,8 @@ ajaxRequest('read-config.html', null, function(xhr){
 		items.forEach(function(item){
 			let a = item.firstChild;
 			if(!a || a.nodeName.toLowerCase() != 'a') return;
-			if(a.href.replace(/\.html(#|$)/, '$1') == window.location.href.replace(/\.html(#|$)/, '$1'))
+			if(a.href.replace(/\.html(#|$)/, '$1') == window.location.href.replace(/\.html(#|$)/, '$1') ||
+			   a.href.replace(/^(.*\/)u\/(.*?)(?:\?.*)?$/, '$1$2') == window.location.href.replace(/\.html/, ''))
 				a.classList.add('active');
 			a.onclick = function(){
 				menuItems.forEach(function(i){
