@@ -11,7 +11,7 @@ ajaxRequest('read-config.html', null, function(xhr){
 	if(!view) return;
 	let config;
 	/* XXX: UNUSED; REFERENCE ONLY
-	if((config = xml.getElementById('site-title-config'))){
+	if((config = xml.getElementById('site-title'))){
 		let items = [...config.getElementsByTagName('li')];
 		items.forEach(function(item){
 			let text = item.firstChild;
@@ -22,7 +22,7 @@ ajaxRequest('read-config.html', null, function(xhr){
 		});
 	}
 	*/
-	if((config = xml.getElementById('top-menu-config'))){
+	if((config = xml.getElementById('top-menu'))){
 		let items = [...config.getElementsByTagName('li')];
 		let menuItems = [];
 		items.forEach(function(item){
