@@ -101,7 +101,7 @@ blockquote::before {
 	left:			-0.55em;
 	top:			-0.05em;
 }
-.figure, .cite {
+figure figcaption, .figure, .cite {
 	font-size:		small;
 	text-align:		center;
 }
