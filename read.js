@@ -6,6 +6,8 @@ loadCSS('u.tpl/read.css', 'screen');
 loadCSS('u.tpl/print.css', 'print');
 
 ajaxRequest('read-config.html', null, function(xhr){
+	let header = document.getElementsByTagName('header')[0];
+	if(!header) return;
 	let xml = ajaxResponseXML(xhr);
 	let view = xml.getElementById('view');
 	if(!view) return;
@@ -40,7 +42,6 @@ ajaxRequest('read-config.html', null, function(xhr){
 			menuItems.push(a);
 		});
 		if(menuItems.length){
-			let header = document.getElementsByTagName('header')[0];
 			let lastChild = header.lastChild;
 			if(lastChild.nodeName.toLowerCase() == '#text' && lastChild.textContent == '\n')
 				header.removeChild(lastChild);
