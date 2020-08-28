@@ -1,5 +1,5 @@
 loadHighlight();
-loadMathjax();
+loadMathJax();
 loadPseudocode();
 loadCSS('u.tpl/screen.css', 'screen');
 loadCSS('u.tpl/read.css', 'screen');
@@ -24,7 +24,7 @@ ajaxRequest('read-config.html', null, function(xhr){
 		});
 	}
 	*/
-	if((config = xml.getElementById('top-menu-config'))){
+	if((config = xml.getElementById('-top-menu-config'))){
 		let items = [...config.getElementsByTagName('li')];
 		let menuItems = [];
 		items.forEach(function(item){

@@ -96,7 +96,7 @@ if(!getOption('asis')){
 
 loadCSS('u.tpl/impress/css/impress-demo.css', 'screen');
 loadHighlight();
-loadMathjax();
+loadMathJax();
 loadPseudocode();
 loadCommonPresentationCSS();
 loadCSS('u.tpl/impress.css', 'screen');

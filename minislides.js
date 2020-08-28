@@ -4,7 +4,7 @@ if(!getOption('asis'))
 loadCSS('u.tpl/minislides/dist/minislides.min.css', 'screen');
 loadCSS('u.tpl/minislides/src/example.css', 'screen');
 loadHighlight();
-loadMathjax();
+loadMathJax();
 loadPseudocode();
 loadCommonPresentationCSS();
 loadCSS('u.tpl/minislides.css', 'screen');

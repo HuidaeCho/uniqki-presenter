@@ -111,7 +111,7 @@ onHashchange();
 loadCSS('u.tpl/reveal/css/reveal.css', 'screen');
 loadCSS('u.tpl/reveal/css/theme/' + theme + '.css', 'screen');
 loadHighlight();
-loadMathjaxConfig();
+loadMathJaxConfig();
 loadPseudocode();
 loadCommonPresentationCSS();
 loadCSS('u.tpl/reveal.css', 'screen');

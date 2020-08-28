@@ -147,20 +147,20 @@ function loadHighlight(){
 	loadHighlightJS();
 }
 
-function loadMathjaxConfig(){
+function loadMathJaxConfig(){
 	let script = document.createElement('script');
 	script.type = 'text/x-mathjax-config';
 	script.innerHTML = "MathJax.Hub.Config({'CommonHTML': {scale: 85}, 'HTML-CSS': {scale: 85}, TeX: {equationNumbers: {autoNumber: 'AMS'}}, tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']], processEscapes: true}});";
 	head.appendChild(script);
 }
 
-function loadMathjaxJS(){
+function loadMathJaxJS(){
 	loadJS('u.tpl/MathJax/MathJax.js?config=TeX-AMS_CHTML', true);
 }
 
-function loadMathjax(){
-	loadMathjaxConfig();
-	loadMathjaxJS();
+function loadMathJax(){
+	loadMathJaxConfig();
+	loadMathJaxJS();
 }
 
 function loadPseudocodeCSS(){

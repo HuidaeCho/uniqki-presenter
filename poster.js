@@ -21,7 +21,7 @@ if(!getOption('asis')){
 }
 
 loadHighlight();
-loadMathjax();
+loadMathJax();
 loadPseudocode();
 [...document.getElementsByTagName('link')].some(function(link){
 	if(link.href.match(reUcss)){
