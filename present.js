@@ -1,7 +1,7 @@
 const presenters = [
 	'read',
-	'impress',
 	'reveal',
+	'impress',
 	'minislides',
 	'poster',
 	'random'
