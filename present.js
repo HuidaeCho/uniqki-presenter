@@ -193,8 +193,11 @@ function presentOnLoad(){
 	});
 	// XXX: need to do this here; see comments in loadHighlightJS()
 	[...document.getElementsByTagName('code')].forEach(function(code){
-		if(!code.classList.length)
+		if(!code.classList.length){
+			if(code.parentNode.tagName.toLowerCase() != 'pre')
+				return;
 			code.classList.add('language-plaintext');
+		}
 		hljs.highlightBlock(code);
 	});
 }
