@@ -138,6 +138,11 @@ function loadHighlightCSS(){
 
 function loadHighlightJS(){
 	loadJS('u.tpl/highlight/highlight.pack.js', false, function(){
+		// XXX: it doesn't work
+		// https://github.com/highlightjs/highlight.js/issues/925#issuecomment-138335516
+		// isagalaev: "What it does is binds itself to the onload event of the
+		// browser which by that moment has probably already been fired.
+		// highlightBlock() is the main method anyway."
 		hljs.initHighlightingOnLoad();
 	});
 }
@@ -186,10 +191,9 @@ function presentOnLoad(){
 		node.parentNode.parentNode.insertBefore(template.content, node.parentNode);
 		node.parentNode.parentNode.removeChild(node.parentNode);
 	});
+	// XXX: need to do this here; see comments in loadHighlightJS()
 	[...document.getElementsByTagName('code')].forEach(function(code){
-		if(code.classList.length == 0)
-			code.classList.add('language-plaintext');
-		else
+		if(code.classList.length)
 			hljs.highlightBlock(code);
 	});
 }
