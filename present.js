@@ -336,8 +336,10 @@ if(view){
 			let pre = code.parentNode;
 			pre.style.display = 'inline-block';
 			pre.style.width = 'auto';
-			pre.style.left = '50%';
-			pre.style.transform = 'translateX(-50%)';
+			if(presenter != 'read'){
+				pre.style.left = '50%';
+				pre.style.transform = 'translateX(-50%)';
+			}
 		}
 	});
 }
