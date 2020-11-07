@@ -2,7 +2,7 @@ if(!getOption('asis')){
 	createSectionsDiv();
 
 	let title = document.getElementById('title');
-	['author', 'affiliation', 'course'].forEach(function(info){
+	['date', 'course', 'author', 'affiliation'].forEach(function(info){
 		let infoGroup = document.createElement('div');
 		infoGroup.id = info + 's';
 		[...document.getElementsByClassName(info)].forEach(function(node){

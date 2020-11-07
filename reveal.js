@@ -201,7 +201,7 @@ if(titleColor){
 					}
 				});
 				if(addNewRule)
-					styleSheet.insertRule('.reveal h1, .course, .course a, .author, .affiliation { color: rgb(' + (255-r) + ', ' + (255-g) + ', ' + (255-b) + '); }', styleSheet.cssRules.length);
+					styleSheet.insertRule('.reveal h1, .date, .course, .course a, .author, .affiliation { color: rgb(' + (255-r) + ', ' + (255-g) + ', ' + (255-b) + '); }', styleSheet.cssRules.length);
 			});
 		});
 	});

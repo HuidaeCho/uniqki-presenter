@@ -10,7 +10,7 @@
 #title {
 	text-shadow:		5px 5px 10px black;
 }
-#title .course {
+#title .date, #title .course {
 	font-size:		smaller;
 }
 #title .course + .author {
