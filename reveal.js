@@ -153,6 +153,10 @@ if(titleBackground){
 		title.setAttribute('data-background-opacity', titleBackgroundOpacity);
 }
 
+let titleFontSize = getOption('title-font-size');
+if(titleFontSize)
+	title.style.fontSize = titleFontSize;
+
 let titleColor = getOption('title-color');
 if(titleColor){
 	[...title.childNodes].forEach(function(node){
@@ -206,6 +210,12 @@ if(titleColor){
 		});
 	});
 }
+
+let h1FontSize = getOption('h1-font-size');
+if(h1FontSize)
+	[...document.getElementsByTagName('h1')].forEach(function(h1){
+		h1.style.fontSize = h1FontSize;
+	});
 
 let minScale = 0.2;
 let maxScale = 2.0;
