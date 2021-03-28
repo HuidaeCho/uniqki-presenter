@@ -55,11 +55,11 @@
 .present {
 	display:		none;
 }
-.homework, .discussion, .exercises, .exercise, .home-exercise {
+.homework, .discussion, .exercises, .exercise, .home-exercise, .class-project {
 	vertical-align:		super;
 	font-size:		0.8em;
 }
-.homework, .discussion, .quiz, .exam, .project {
+.homework, .quiz, .exam, .project {
 	color:			red;
 }
 .exercises, .exercise {
