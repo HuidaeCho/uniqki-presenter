@@ -1,4 +1,4 @@
-#top {
+#header {
 	display:		none;
 }
 #presenter-selector {
@@ -17,7 +17,7 @@
 #parsing-time {
 	display:		none;
 }
-#bottom {
+#footer {
 	display:		none;
 }
 .edit-section a {

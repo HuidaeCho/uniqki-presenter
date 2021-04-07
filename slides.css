@@ -1,4 +1,4 @@
-#top {
+#header {
 	display:		none;
 }
 .tags {
@@ -63,7 +63,7 @@
 #metadata {
 	display:		none;
 }
-#bottom {
+#footer {
 	display:		none;
 }
 /*
