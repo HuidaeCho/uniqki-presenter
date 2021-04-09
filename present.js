@@ -95,7 +95,7 @@ function flattenNode(topNode, lastNode){
 			if(node.nodeName.toLowerCase() == 'section'){
 				flatten(node);
 				if(node.id == '' && node.innerText.replace(/^[0-9]+\u00a0*/, '') == '')
-					parentNode.removeChild(node);
+					node.remove();
 				else
 					lastNode = topNode.insertBefore(node, lastNode);
 			}
@@ -189,7 +189,7 @@ function presentOnLoad(){
 		let template = document.createElement('template');
 		template.innerHTML = pseudocode.renderToString(code, {lineNumber: true});
 		node.parentNode.parentNode.insertBefore(template.content, node.parentNode);
-		node.parentNode.parentNode.removeChild(node.parentNode);
+		node.parentNode.remove();
 	});
 	// XXX: need to do this here; see comments in loadHighlightJS()
 	[...document.getElementsByTagName('code')].forEach(function(code){
@@ -296,7 +296,7 @@ if(view){
 							node2.removeChild(node2.lastChild);
 						else{
 							node2.innerHTML += (node2.innerHTML.match(rePunctChars) ? ' ' : '. ') + node.innerHTML + (node.innerHTML.match(rePunctChars) ? '' : '.');
-							parentNode.removeChild(node);
+							node.remove();
 						}
 						i++;
 					}
