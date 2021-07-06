@@ -25,7 +25,7 @@ loadMathJax();
 loadPseudocode();
 [...document.getElementsByTagName('link')].some(function(link){
 	if(link.href.match(reUcss)){
-		link.parentNode.removeChild(link);
+		link.remove();
 		return true;
 	}
 });
