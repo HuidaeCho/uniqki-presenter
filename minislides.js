@@ -9,6 +9,6 @@ loadPseudocode();
 loadCommonPresentationCSS();
 loadCSS('u.tpl/minislides.css', 'screen');
 
-windowOnLoad(function(){
+onLoadWindow(function(){
 	loadJS('u.tpl/minislides/src/minislides.js', true);
 });

@@ -101,7 +101,7 @@ loadPseudocode();
 loadCommonPresentationCSS();
 loadCSS('u.tpl/impress.css', 'screen');
 
-windowOnLoad(function(){
+onLoadWindow(function(){
 	loadJS('u.tpl/impress/js/impress.js', true, function(){
 		impress().init();
 	});

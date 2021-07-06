@@ -183,7 +183,7 @@ function loadPseudocode(){
 	loadPseudocodeCSS();
 }
 
-function presentOnLoad(){
+function onLoadPresent(){
 	[...document.getElementsByClassName('language-pseudocode')].forEach(function(node){
 		let code = node.textContent;
 		let template = document.createElement('template');
@@ -202,8 +202,8 @@ function presentOnLoad(){
 	});
 }
 
-windowOnLoad(function(){
-	presentOnLoad();
+onLoadWindow(function(){
+	onLoadPresent();
 });
 
 let view = document.getElementById('view');

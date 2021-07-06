@@ -174,7 +174,7 @@ if(titleColor){
 	title.style.color = titleColor;
 }else if(titleBackground && !titleBackgroundOpacity){
 	loadJS('u.tpl/getAverageRGB.js');
-	windowOnLoad(function(){
+	onLoadWindow(function(){
 		let img = new Image();
 		img.src = titleBackground;
 		addEvent(img, 'load', function(){
@@ -234,7 +234,7 @@ if(getOption('scale')){
 	}
 }
 
-windowOnLoad(function(){
+onLoadWindow(function(){
 	loadJS('u.tpl/reveal/js/reveal.js', false, function(){
 		let mathjaxConfig = window.location.href.match(/^file:/) ? 'TeX-AMS_SVG-full' : 'TeX-AMS_HTML-full';
 		Reveal.initialize({
