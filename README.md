@@ -6,7 +6,7 @@ impress.js.
 
 ## License
 
-Copyright (C) 2019, Huidae Cho <<https://idea.isnew.info>>
+Copyright (C) 2019, Huidae Cho <<https://idea.isnew.info/>>
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
