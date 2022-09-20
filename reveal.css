@@ -35,6 +35,9 @@
 .reveal .slides section table thead {
 	border-bottom:		1px solid black;
 }
+.reveal .slides section table tr {
+	vertical-align:		top;
+}
 .reveal .slides section table th {
 	border:			none;
 	padding:		0.3em;
